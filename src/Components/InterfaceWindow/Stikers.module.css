@@ -1,0 +1,139 @@
+.container{
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.oneStiker{
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(209, 209, 209);
+  margin-bottom: 5px;
+}
+.editStiker{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-right: 1%;
+}
+.editStikere{
+  margin: 0;
+    padding: 0;
+    margin-left: -31% !important;
+    width: 100%;
+}
+.editModeSwitcher{
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+text-align: center;
+color: buttontext;
+background-color: buttonface;
+box-sizing: border-box;
+padding: 2px 6px 3px;
+border-width: 2px;
+border-style: outset;
+border-color: buttonface;
+border-image: initial;
+border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+border-style: solid;
+border-width: 1px;
+padding: 1px 7px 2px;
+word-spacing: normal;
+text-align: start;
+font: 400 11px system-ui;
+}
+.stikercontainer{
+display: flex;
+flex-direction: row;
+border: 1px solid black;
+border-radius: 5px;
+background-color: #e3e3e3;
+width: 400px;
+padding: 5px 0px;
+margin-bottom: 15px;
+box-shadow: 0 0 20px 3px black;
+}
+.barcode{
+  width: 20%;
+  border-right: 1px solid #333;
+}
+.bar{
+  transform: rotate(90deg);
+  padding-top: 20px;
+}
+.mainstiker{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.author{
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+.articlerow{
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-around;
+}
+.article{
+  padding-top: 0;
+}
+.quantity{
+  padding: 0 20px ;
+  border-left: 1px solid #333;
+}
+.quantity h6{
+  padding: 0;
+  margin: 0;
+  font-style: italic;
+  font-weight: 300;
+}
+.quantity h3{
+  padding: 10px;
+  margin: 0;
+}
+.name{
+  text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid #333;
+}
+.storageplace{
+  display: flex;
+  justify-content: space-between;
+    border-bottom: 1px solid #333;
+}
+.whereload{
+  border-bottom: 1px solid #333;
+}
+.time{
+display: flex;
+flex-direction: row;
+}
+.windowContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.optionMenu{
+  height: inherit;
+  width: 20%;
+}
+.stickyWrap{
+  position: sticky;
+  top: 10%;
+}
+.btncont{
+width: 100%;
+  padding: 10px 0;
+}
+.btncont button{
+    border-radius: 6px;
+    width: 100%;
+    height: 30px;
+}
+.comment{
+  font-style: italic;
+  font-weight: 300
+}

@@ -1,0 +1,16 @@
+.mainScreen{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+color: #2e2e2e;
+}
+.discr{
+  height: 100%;
+  text-align: center;
+  font-family: sans-serif;
+  width: 480px;
+  padding: 10px;
+  margin-bottom: 40px;
+  color: #fff
+}

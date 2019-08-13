@@ -1,0 +1,77 @@
+{
+  "name": "StikerPrint",
+  "description": "",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "Anna Karenina",
+    "email": "",
+    "url": "https://your-website.com"
+  },
+  "build": {
+    "appId": "StikerPrint",
+    "productName": "StikerPrint",
+    "copyright": "Copyright © 2019 ${author}",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "convert-excel-to-json": "^1.6.1",
+    "electron-is-dev": "^1.0.1",
+    "formik": "^1.5.8",
+    "react": "^16.8.3",
+    "react-barcode": "^1.3.4",
+    "react-dnd": "^9.3.2",
+    "react-dnd-html5-backend": "^9.3.2",
+    "react-dom": "^16.8.3",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "2.1.5",
+    "react-select": "^3.0.4",
+    "redux": "1.0.0-rc",
+    "redux-form": "^8.2.4"
+  },
+  "homepage": "./",
+  "license": "ISC",
+  "main": "public/electron.js",
+  "scripts": {
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-pack": "yarn build",
+    "electron-pack": "build -mw"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@rescripts/cli": "^0.0.10",
+    "@rescripts/rescript-env": "^0.0.5",
+    "concurrently": "^4.1.0",
+    "electron": "^4.0.6",
+    "electron-builder": "^20.38.5",
+    "electron-devtools-installer": "^2.2.4",
+    "react-to-print": "^2.3.0",
+    "redux-devtools-extension": "^2.13.8",
+    "typescript": "^3.3.3333",
+    "wait-on": "^3.2.0"
+  }
+}
