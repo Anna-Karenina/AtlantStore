@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
 let DragFile = (props) =>{
-  console.log(props)
 if(props.filesNames.length !== 0){
       return(
         <Link to= "/Stikers">

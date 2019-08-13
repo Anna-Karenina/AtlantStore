@@ -8,10 +8,16 @@
   align-items: center;
   top: 200px;
   position: fixed;
+  padding: 6px;
+  color: #fff
+}
+.dragcont:hover {
+transform: scale(1.1);
+transition: 0.2s;
 }
 
 .svgCont{
 	width: 64px;
 	height: 64px;
-  padding: 3px;
+  padding: 5px;
 }

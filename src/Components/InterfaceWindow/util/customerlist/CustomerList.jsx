@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Select from 'react-select'
 import {addConsAC} from './../../../../Redux/FileReducer'
 
+
 const formatCustomerForSelect = customer =>({
   label: customer.name,
   value: customer.id
@@ -11,12 +12,13 @@ const formatCustomerForSelect = customer =>({
 
 const mapStateToProps = (state) =>{
   let  initialValues = {}
-initialValues.currentCustomer = (state.fileReducer.customer)
-.map(formatCustomerForSelect)
+  initialValues.currentCustomer = (state.fileReducer.customer)
+  .map(formatCustomerForSelect);
  return{
    customer: initialValues.currentCustomer
  }
 }
+
 const mapDispatchToProps = (dispatch) =>{
   return{
   addConstumerdis: (formData)=>{
@@ -38,13 +40,8 @@ let ReduxFormSelect = props => {
   )
 }
 
-let addConstumer= (props)=>{
-  console.log(props)
-}
-
 const CustomerList = props => {
   const { handleSubmit , customer } = props;
-  console.log(props)
   return (
     <form onChange={handleSubmit}>
       <Field name="constumer" component={ReduxFormSelect} options={customer} />
@@ -52,6 +49,4 @@ const CustomerList = props => {
   )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)
-(reduxForm({ form: 'customerlist',  enableReinitialize: true, })
-(CustomerList));
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({ form: 'customerlist',  enableReinitialize:true,})(CustomerList));
