@@ -9,11 +9,15 @@ class Stikers extends React.Component {
   constructor(props){
   super(props);
     this.componentRef = React.createRef()
-  }
-
+}
+submit = (values) => {
+console.log(values)
+}
   render(){
     console.log(this)
-    let selm = this.props.files.map(p => <OneStiker changeEditMode ={this.props.changeEditMode}
+    let selm = this.props.files.map(p => <OneStiker
+      delonestiker ={this.props.delonestiker}
+      dublecard ={this.props.dublecard}
        key = {p.id}
        id={p.id}
        article={p.article}
@@ -49,7 +53,7 @@ class Stikers extends React.Component {
           </div>
         </div>
         <div className = {cl.container} >
-          <form   ref={this.componentRef} >
+          <form   ref={this.componentRef} onSubmit={this.props.handleSubmit(this.submit)} >
             {selm}
           </form>
         </div>

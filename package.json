@@ -51,7 +51,8 @@
     "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
     "preelectron-pack": "yarn build",
-    "electron-pack": "build -mw"
+    "electron-pack": "build -mw",
+    "electron-pack-w32": "build --win --ia32  "
   },
   "eslintConfig": {
     "extends": "react-app"

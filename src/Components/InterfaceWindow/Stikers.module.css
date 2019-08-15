@@ -6,22 +6,23 @@
   align-items: center;
   }
 .oneStiker{
+  height: 340px;
   display: flex;
   flex-direction: row;
   background-color: rgb(209, 209, 209);
-  margin-bottom: 5px;
 }
 .editStiker{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding-right: 1%;
+  border-bottom: 1px solid #fff;
   }
 .editStikere{
   margin: 0;
   margin-bottom: 1%;
   padding: 0;
-  margin-left: -31% !important;
+  margin-left: -30% !important;
   width: 100%;
   background-color: #fff;
 }
@@ -53,9 +54,6 @@
   border-radius: 5px;
   background-color: #fff;
   width: 400px;
-  padding: 8px 0px;
-  margin-bottom: 15.5px;
-  box-shadow: 0 0 20px 3px black;
   }
 .barcode{
   width: 20%;
@@ -142,8 +140,8 @@ text-align:  center;
   flex-direction: row;
 }
 .time h6{
-  font-size: 15px;
-  margin: 0;
+ font-size: 15px;
+ margin: 0;
  padding: 21.9px 10px;
 }
 .windowContainer{
@@ -152,7 +150,9 @@ text-align:  center;
   justify-content: space-around;
 }
 .optionMenu{
-   height: inherit;  width: 20%;}
+   height: inherit;
+   width: 20%;
+ }
 .stickyWrap{
   position: sticky;
   top: 10%;
@@ -164,7 +164,9 @@ text-align:  center;
 .btncont button{
   border-radius: 6px;
   width: 100%;
-  height: 30px;}
+  height: 30px;
+}
 .comment{
   font-style: italic;
-  font-weight: 300}
+  font-weight: 300
+}

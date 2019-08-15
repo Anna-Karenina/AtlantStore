@@ -9,7 +9,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import  Router from './Router.jsx'
 
-
+setTimeout(()=>{
   ReactDOM.render(
     <HashRouter>
         <Provider store = {store}>
@@ -20,5 +20,7 @@ import  Router from './Router.jsx'
 
 
    </HashRouter>,  document.getElementById('root'));
+},0)
+
 
 serviceWorker.unregister();
