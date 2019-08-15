@@ -4,18 +4,21 @@ const stylebox = {
   display: 'flex',
   justifyContent: "center",
   alignItems: "center",
-  border: "2px dashed #ccc",
+  border: "2.5px dashed #ccc",
   borderRadius: '20px',
   width: '480px',
   height: '380px',
   fontFamily: 'sans-serif',
+  fontSize: '1.2rem',
+  fontWeight: '500',
   padding: '20px',
   backgroundColor: 'rgba(129,129,129, 0.5)',
-  transition: '0.3s'
+  transition: '0.3s',
+  color: '#fff'
 }
 const styleActive = {
   backgroundColor: 'rgba(129,129,129, 0.7)',
-  border: "2px dashed purple",
+  border: "2.5px dashed purple",
   display: 'flex',
   justifyContent: "center",
   alignItems: "center",
@@ -23,8 +26,10 @@ const styleActive = {
   width: '480px',
   height: '380px',
   fontFamily: 'sans-serif',
+  fontSize: '2rem',
   padding: '20px',
-    transition: '0.3s'
+  transition: '0.3s',
+  color: 'purple'
 }
 
 const TargetBox = ({ canDrop, isOver, connectDropTarget }) => {

@@ -7,18 +7,26 @@ const path = require('path');
 const url = require('url');
 const isDev = require('electron-is-dev');
 
+
+
+
 let mainWindow;
-let printWindow;
+let consWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 900, height: 680 , webPreferences : {webSecurity: false} } );
-  mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+  mainWindow = new BrowserWindow({
+    width: 900, height: 680,
+    webPreferences : {webSecurity: false} });
+    mainWindow.loadURL(isDev ?
+      'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
 
-  consWindow = new BrowserWindow({width: 600, height: 480, show: false  });
-  consWindow.loadURL(`file://${path.join(__dirname, '../build/consumer.html')}`);
+  consWindow = new BrowserWindow({
+      width: 600, height: 480,
+      show: false, modal: true, parent: mainWindow});
+    consWindow.loadURL(`file://${path.join(__dirname, '../build/index.html')}`);
+
 
   const template = [
-    // { role: 'appMenu' }
     ...(process.platform === 'darwin' ? [{
       label: app.getName(),
       submenu: [
@@ -50,20 +58,20 @@ function createWindow() {
         {
           label: 'Редактирование' ,
           click(){
+            consWindow.once('ready-to-show', () = > {
             consWindow.show()
+          })
           }
         },
       ]
     },
   ]
 
-
-
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 
-
   mainWindow.on('closed', () => mainWindow = null);
+  // consWindow.on('blur',() => consWindow = consWindow.hide() );
 }
 app.on('ready', createWindow);
 

@@ -30,7 +30,10 @@ const FileList = (props) => {
     props.addFile(dropped);
   }
     return props.files.length === 0 ? (
-      <div>Нет подкинутых файлов</div>
+      <div>Нет подкинутых файлов
+        <Link to='Consumer' >Открыть</Link>
+      </div>
+
     ) : (
         <div>
             <Link to='Stikers' >Открыть</Link>
