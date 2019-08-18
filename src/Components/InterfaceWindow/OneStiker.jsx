@@ -5,32 +5,53 @@ const Barcode = require('react-barcode');
 const os = require ('os');
 const username = os.userInfo ().username;
 
- class OneStiker extends React.Component {
 
+ class OneStiker extends React.Component {
+   constructor(props) {
+     super(props);
+       this.state = {
+         hasEditModeValue: false
+       };
+     this.handleInputChange = this.handleInputChange.bind(this);
+   }
+
+   handleInputChange(event) {
+     const target = event.target;
+     const value = target.type === 'checkbox'
+     ? target.checked : target.value;
+
+     this.setState({
+       hasEditModeValue: value
+     });
+   }
 
   render(){
        console.log(this)
-      let dubleCard=()=>{
-        this.props.dublecard(this.props.id)
-      }
-      let delOneStiker=()=>{
-       this.props.delonestiker(this.props.id)
-       }
+    let dubleCard=()=>{
+      this.props.dublecard(this.props.id)
+    }
+    let delOneStiker=()=>{
+     this.props.delonestiker(this.props.id)
+    }
     let time = new Date().toLocaleString();
     return(
       <div className = {cl.oneStiker}>
         <div className={cl.editStiker}>
           <div className = {cl.editModeSwitcher}>
-            <label htmlFor='enterEditMode'> Редктирование</label>
+            <label htmlFor='enterEditMode'> Редактирование</label>
             <Field name={`${this.props.id}idfield`}
-               component="input"
-               type="checkbox" />
+              component="input"
+              type="checkbox"
+              checked = {this.state.hasEditModeValue}
+              onChange={this.handleInputChange}/>
           </div>
+            {this.state.hasEditModeValue &&
+            <div className={cl.editbutton}>
 
-            <div>
-              <button onClick={dubleCard}>Дублировать </button>
+              <button onClick = {dubleCard}>Дублировать </button>
               <button onClick = {delOneStiker}>Удалить </button>
-            </div>
+
+            </div>}
           </div>
           <div className = {cl.stikercontainer} >
             <div className={cl.barcode}>

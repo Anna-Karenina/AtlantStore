@@ -22,7 +22,7 @@ const fileReducer = (state = initState, action) =>{
       let newFile = action.newFile
     return {
       ...state,
-      files: [...state.files, ...newFile.sheet, ]
+      files: [...state.files, ...newFile.sheet]
       }
     }
     case ADD_CONSUMER_IN_CARD :{

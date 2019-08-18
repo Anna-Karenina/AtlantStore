@@ -6,6 +6,9 @@ import { reduxForm } from 'redux-form';
 const mapStateToProps = (state) =>{
   return{
         files: state.fileReducer.files,
+        initialValues:{
+          checked: false
+        }
 
   }
 }
@@ -22,6 +25,10 @@ const mapDispatchToProps = (dispatch) =>{
   }
   }
 }
-const StikersContainer = connect (mapStateToProps, mapDispatchToProps)(reduxForm({form: 'stikerValues'})(Stikers));
+const StikersContainer = connect (
+  mapStateToProps, mapDispatchToProps
+)(reduxForm({
+  form: 'stikerValues'
+})(Stikers));
 
 export default StikersContainer;

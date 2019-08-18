@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import cl from './Customer.module.css'
+// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 class Consumer extends React.Component {
   render(){
@@ -11,7 +12,9 @@ class Consumer extends React.Component {
       </div>
 
       <div className = {cl.seccol}>
-        40
+        <div className = {cl.listwrapper}>
+20
+        </div>
       </div>
 
       <div className = {cl.thirdcol}>
@@ -19,7 +22,6 @@ class Consumer extends React.Component {
           <img src = {require('./recyclingbin2.png')} alt = '1' />
         </div>
       </div>
-
 
     </div>
   )

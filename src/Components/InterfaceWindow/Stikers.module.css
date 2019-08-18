@@ -47,6 +47,21 @@
   text-align: start;
   font: 400 11px system-ui;
   }
+  .editbutton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+  .editbutton button{
+
+    padding: 5%;
+    border-radius: 10px;
+  }
+  .editbutton button:last-child{
+    margin-top: 40%;
+    background-color: red;
+  }
 .stikercontainer{
   display: flex;
   flex-direction: row;

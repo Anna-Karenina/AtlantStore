@@ -14,6 +14,9 @@ submit = (values) => {
 console.log(values)
 }
   render(){
+    const {handleSubmit} = this.props;
+    const submit = (values) => console.log(values);
+
     console.log(this)
     let selm = this.props.files.map(p => <OneStiker
       delonestiker ={this.props.delonestiker}
@@ -24,8 +27,7 @@ console.log(values)
        name={p.name}
        quantity={p.quantity}
        storageplace = {p.storageplace}
-       customer = {p.customer}
-        /> )
+       customer = {p.customer}  /> )
 
     let addConstumer = (formData)=>{
       this.props.addConstumerdis(formData)
@@ -35,7 +37,7 @@ console.log(values)
         <div className={cl.optionMenu}>
           <div className={cl.stickyWrap}>
             <div className={cl.btncont}>
-              <Link to='/'><button>назад</button></Link>
+              <Link to="/"><button>назад</button></Link>
             </div>
               <CustomerListRedux onChange={addConstumer}  />
                 <div className={cl.btncont}>
@@ -53,7 +55,7 @@ console.log(values)
           </div>
         </div>
         <div className = {cl.container} >
-          <form   ref={this.componentRef} onSubmit={this.props.handleSubmit(this.submit)} >
+          <form   ref={this.componentRef} onSubmit={handleSubmit(submit)} >
             {selm}
           </form>
         </div>
