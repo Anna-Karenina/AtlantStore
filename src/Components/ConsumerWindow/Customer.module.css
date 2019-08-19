@@ -1,18 +1,29 @@
 .mainWrapper{
   display: flex;
   flex-direction: row;
+  align-items: center;
   /* background-color: rgba(129,129,129, 0.5); */
   width: 100%;
-  height: 100%;
+  height: 600px;
 }
 /* -------------------------------firscol */
 .firscol{
   width: 35%;
 }
+.consedit{
+  margin-top: -35%;
+  border: 1px solid black;
+}
+.consedit h4{
+padding: 0;
+margin: 0;
+}
 /* -------------------------------seccol */
 .seccol{
 width: 55%;
-
+}
+.listwrapper{
+  border: 1px solid black;
 }
 /* -------------------------------thirdcol */
 .thirdcol{

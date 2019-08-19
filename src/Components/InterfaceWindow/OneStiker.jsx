@@ -10,6 +10,7 @@ const username = os.userInfo ().username;
    constructor(props) {
      super(props);
        this.state = {
+         quantity : this.props.quantity,
          hasEditModeValue: false
        };
      this.handleInputChange = this.handleInputChange.bind(this);
@@ -17,14 +18,12 @@ const username = os.userInfo ().username;
 
    handleInputChange(event) {
      const target = event.target;
-     const value = target.type === 'checkbox'
-     ? target.checked : target.value;
-
+     const value = target.type === 'checkbox' ? target.checked : target.value;
      this.setState({
-       hasEditModeValue: value
+       hasEditModeValue: value,
+       quantity: value
      });
    }
-
   render(){
        console.log(this)
     let dubleCard=()=>{
@@ -47,10 +46,8 @@ const username = os.userInfo ().username;
           </div>
             {this.state.hasEditModeValue &&
             <div className={cl.editbutton}>
-
               <button onClick = {dubleCard}>Дублировать </button>
               <button onClick = {delOneStiker}>Удалить </button>
-
             </div>}
           </div>
           <div className = {cl.stikercontainer} >
@@ -66,7 +63,17 @@ const username = os.userInfo ().username;
                   <h2>{this.props.article}</h2></div>
                   <div className={cl.quantity}>
                     <h6>Количество:</h6>
-                    <h3>{this.props.quantity}</h3>
+                    {this.state.hasEditModeValue &&
+                    <>
+                    <input className={cl.quantityedit}
+                      onChange={this.handleInputChange}
+                      type="text"
+                      defaultValue={this.props.quantity}
+
+                      />
+                    <button>ok</button>
+                  </>}
+                    <h3>{this.state.quantity}</h3>
                   </div>
                 </div>
                 <div className = {cl.name}>{this.props.name}</div>
@@ -85,13 +92,5 @@ const username = os.userInfo ().username;
           </div>
         )}
       }
-
-
-
-      // {this.props.hasEditModeValue &&
-      //   <div>
-      //     <button>Дублировать </button>
-      //     <button>Удалить </button>
-      //   </div>}
 
 export default OneStiker

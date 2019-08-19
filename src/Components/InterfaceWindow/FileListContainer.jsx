@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
-import { newFileAC, takeFileNameAC } from './../../Redux/FileReducer';
+import { newFileAC, takeFileNameAC, fromFileConsumerAc} from './../../Redux/FileReducer';
 import FileList from './FileList';
 
 const mapStateToProps = (state) =>{
   return{
-        files: state.fileReducer.files
+        files: state.fileReducer.files,
+        customer:state.fileReducer.customer
   }
 }
 const mapDispatchToProps = (dispatch) =>{
@@ -14,6 +15,9 @@ const mapDispatchToProps = (dispatch) =>{
     },
     takeFile: (filename) =>{
       dispatch(takeFileNameAC(filename))
+    },
+    addNewConsumertoStatedis: (file)=>{
+      dispatch(fromFileConsumerAc(file))
     }
   }}
 

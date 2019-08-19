@@ -22,7 +22,7 @@
   margin: 0;
   margin-bottom: 1%;
   padding: 0;
-  margin-left: -30% !important;
+  margin-left: -31.5% !important;
   width: 100%;
   background-color: #fff;
 }
@@ -184,4 +184,7 @@ text-align:  center;
 .comment{
   font-style: italic;
   font-weight: 300
+}
+.quantityedit{
+  width: 70%;
 }

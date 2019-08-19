@@ -3,17 +3,12 @@ const ADD_CONSUMER_IN_CARD = 'ADD_CONSUMER_IN_CARD';
 const TAKE_FILE_NAME = 'TAKE_FILE_NAME';
 const DELETE_ONE_STIKER = 'DELETE_ONE_STIKER';
 const DUBLE_ONE_STIKER = 'DUBLE_ONE_STIKER';
+const FROM_JSON_TO_STATE = 'FROM_JSON_TO_STATE';
+
 
 let initState = {
   files : [],
-  customer: [
-              {id: 1, name: "Создать нового поставщика"},
-              {id: 2, name: "emex"},
-              {id: 3, name: "Автодок"},
-              {id: 4, name: "АвтоПитер"},
-              {id: 5, name: "Принт"},
-              {id: 5, name: "Мясников"},
-  ],
+  customer: [],
   fileNames:[]
 }
 const fileReducer = (state = initState, action) =>{
@@ -68,6 +63,13 @@ const fileReducer = (state = initState, action) =>{
       }
     }
 
+    case FROM_JSON_TO_STATE:{
+      let filearr = Object.values(action.file)
+      return{
+        ...state,
+        customer:[...state.customer, ...filearr]
+      }
+    }
 
     default :
        return state;
@@ -78,18 +80,6 @@ export const addConsAC = (customer) => ({ type:ADD_CONSUMER_IN_CARD, customer})
 export const takeFileNameAC = (fileName) => ({ type:TAKE_FILE_NAME, fileName})
 export const delonestikerAC = (id) => ({ type:DELETE_ONE_STIKER, stikerid : id})
 export const dublecardAC = (id) => ({ type:DUBLE_ONE_STIKER, stikerid : id})
+export const fromFileConsumerAc = (file) => ({ type:FROM_JSON_TO_STATE, file})
 
 export default fileReducer;
-
-
-
-// return{
-//     ...state,
-//     files:  state.files.map(u=> {
-//       if(u.id === k.id){
-//       k.id = state.files.length++
-//     return {...state.files, k}
-//   }
-//   return state;
-//   })
-// }

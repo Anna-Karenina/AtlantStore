@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 const excelToJson = require('convert-excel-to-json');
 
 
+
 const FileList = (props) => {
   let dropped = {}
     if (props.droppedFiles.taked === true ){
@@ -28,6 +29,7 @@ const FileList = (props) => {
     props.takeFile(filename);
     props.droppedFiles.taked = false;
     props.addFile(dropped);
+
   }
     return props.files.length === 0 ? (
       <div>Нет подкинутых файлов
