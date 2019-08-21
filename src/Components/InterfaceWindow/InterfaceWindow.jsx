@@ -1,5 +1,6 @@
 import cl from './InterfaceWindow.module.css'
 import React, { useState, useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import { NativeTypes } from 'react-dnd-html5-backend'
 import TargetBox from './TargetBox'
 import FileListContainer from './FileListContainer.jsx'
@@ -22,7 +23,7 @@ const InterfaceWindow = (props) =>{
       <div className={cl.mainScreen}>
         <div className={cl.discr}>
           <DragFileContainer />
-          <p>Загрузите excel файл перетащив нужные изображения в выделенную область</p>
+          <p>Загрузите excel файл перетащив нужные изображения в выделенную область<Link to='Consumer' >Открыть</Link></p>
         </div>
           <TargetBox accepts={accepts} onDrop={handleFileDrop} />
           <FileListContainer  droppedFiles = {takeDrop} />

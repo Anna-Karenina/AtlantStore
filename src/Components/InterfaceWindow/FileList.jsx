@@ -33,7 +33,6 @@ const FileList = (props) => {
   }
     return props.files.length === 0 ? (
       <div>Нет подкинутых файлов
-        <Link to='Consumer' >Открыть</Link>
       </div>
 
     ) : (

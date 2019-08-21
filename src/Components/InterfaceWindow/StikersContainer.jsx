@@ -9,7 +9,6 @@ const mapStateToProps = (state) =>{
         initialValues:{
           checked: false
         }
-
   }
 }
 const mapDispatchToProps = (dispatch) =>{

@@ -4,7 +4,8 @@ const TAKE_FILE_NAME = 'TAKE_FILE_NAME';
 const DELETE_ONE_STIKER = 'DELETE_ONE_STIKER';
 const DUBLE_ONE_STIKER = 'DUBLE_ONE_STIKER';
 const FROM_JSON_TO_STATE = 'FROM_JSON_TO_STATE';
-
+const FROM_HANDENTRY_CONS_TO_STATE = "FROM_HANDENTRY_CONS_TO_STATE"
+const CONSUMER_DELITE = 'CONSUMER_DELITE'
 
 let initState = {
   files : [],
@@ -71,6 +72,27 @@ const fileReducer = (state = initState, action) =>{
       }
     }
 
+    case FROM_HANDENTRY_CONS_TO_STATE:{
+      let values = action.values
+      return{
+        ...state,
+      customer:[...state.customer, values]
+      }
+    }
+
+    case CONSUMER_DELITE :{
+      let item = action.items.id
+      let delitem = state.customer.find(delitem => delitem.id === item);
+        if(delitem === undefined){
+            return {...state}
+            }
+      return{
+        ...state,
+        customer:  state.customer.filter(i => i.id !== delitem.id)
+        }
+      }
+
+
     default :
        return state;
     }
@@ -81,5 +103,7 @@ export const takeFileNameAC = (fileName) => ({ type:TAKE_FILE_NAME, fileName})
 export const delonestikerAC = (id) => ({ type:DELETE_ONE_STIKER, stikerid : id})
 export const dublecardAC = (id) => ({ type:DUBLE_ONE_STIKER, stikerid : id})
 export const fromFileConsumerAc = (file) => ({ type:FROM_JSON_TO_STATE, file})
+export const fromConsFieldToStateAc = (values) => ({ type:FROM_HANDENTRY_CONS_TO_STATE, values})
+export const consumerDelAc = (items) => ({ type:CONSUMER_DELITE, items})
 
 export default fileReducer;
