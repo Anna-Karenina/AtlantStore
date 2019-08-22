@@ -23,6 +23,7 @@ useEffect( () => {
       index: cards.indexOf(card),
     }
   }
+console.log(cards)
   return (
       <div style={{display: 'flex', justifyContent: 'center', alignItems:'center', flexDirection: 'column'}}>
         {cards.map(card => (

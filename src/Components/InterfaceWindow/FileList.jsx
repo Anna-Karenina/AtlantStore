@@ -37,7 +37,7 @@ const FileList = (props) => {
 
     ) : (
         <div>
-            <Link to='Stikers' >Открыть</Link>
+            <Link to='Stikers' >Загрузка завершена</Link>
        </div>
    )
 }

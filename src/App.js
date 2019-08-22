@@ -4,11 +4,15 @@ import {fromFileConsumerAc} from './Redux/FileReducer'
 import { connect } from 'react-redux';
 import  InterfaceWindow from './Components/InterfaceWindow/InterfaceWindow.jsx';
 const fs = require('fs');
-const path = "/Users/annakarenina/Documents/ui/new/el/src/Components/ConsumerWindow/Consumer.json"
+const path = require('path')
+
+
+let consdir = path.join(require('electron').remote.app.getAppPath(), '../', '/Consumer')
+console.log(consdir)
 
 class App extends React.Component {
   render(){
-    let file = JSON.parse(fs.readFileSync(path ,function(err, data){
+    let file = JSON.parse(fs.readFileSync(`${consdir}/Consumer.json` ,function(err, data){
             if(err){console.error(err)}
             else {
             console.log(data);
@@ -17,6 +21,7 @@ class App extends React.Component {
     if(!this.props.customer.length ){
      this.props.addNewConsumertoStatedis(file);
     }
+
     return (
         <div className="App">
             <div className="wrapper">

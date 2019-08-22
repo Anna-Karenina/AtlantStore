@@ -1,12 +1,27 @@
-import cl from './InterfaceWindow.module.css'
 import React, { useState, useMemo } from 'react'
-import { Link } from 'react-router-dom'
 import { NativeTypes } from 'react-dnd-html5-backend'
 import TargetBox from './TargetBox'
 import FileListContainer from './FileListContainer.jsx'
-import DragFileContainer from './util/DragFile/DragFile.jsx'
+import DragFileContainer from './../util/DragFile/DragFile.jsx'
+import  Navbar from './../util/Navbar/Navbar.jsx'
 const { FILE } = NativeTypes
 
+const mainScreen = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  color: '#2e2e2e',
+}
+const discr = {
+  height: '100%',
+  textAlign: 'center',
+  fontFamily: 'sans-serif',
+  width: '480px',
+  padding: '10px',
+  marginBottom: '40px',
+  color: '#fff',
+}
 const InterfaceWindow = (props) =>{
   const [droppedFiles, setDroppedFiles] = useState([])
   const accepts = useMemo(() => [FILE], [])
@@ -20,10 +35,12 @@ const InterfaceWindow = (props) =>{
     takeDrop.taked = true
   }
   return (
-      <div className={cl.mainScreen}>
-        <div className={cl.discr}>
+      <div style={mainScreen}>
+        <Navbar />
+
+        <div style={discr}>
           <DragFileContainer />
-          <p>Загрузите excel файл перетащив нужные изображения в выделенную область<Link to='Consumer' >Открыть</Link></p>
+          <p>Загрузите excel перетащив нужные файлы в выделенную область</p>
         </div>
           <TargetBox accepts={accepts} onDrop={handleFileDrop} />
           <FileListContainer  droppedFiles = {takeDrop} />

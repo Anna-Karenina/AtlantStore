@@ -21,8 +21,12 @@ const TargetBox = ({ onDrop, items }) => {
   return (
     <div ref={drop} style={{opacity, border}} >
      <img src = {require('./recyclingbin2.png')} alt = '1' />
-      {!canDrop && items
-         && <p>Удалено: {items.name}</p>}
+      {!canDrop  && items
+         && <p>Удалено: {items.name}</p>
+      }
+      {canDrop
+         && <p>Сортируйте!</p>
+      }
     </div>
   )
 }

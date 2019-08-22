@@ -2,13 +2,12 @@
   border: 0.5px solid black;
   display: flex;
   flex-direction: column;
-  max-width: 100px;
   border-radius: 4px;
   justify-content: center;
   align-items: center;
   top: 200px;
   position: fixed;
-  padding: 6px;
+  padding: 4px;
   color: #fff
 }
 .dragcont:hover {
@@ -20,4 +19,6 @@ transition: 0.2s;
 	width: 64px;
 	height: 64px;
   padding: 5px;
+}
+.filename{
 }

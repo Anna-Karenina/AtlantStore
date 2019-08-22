@@ -14,16 +14,26 @@ const username = os.userInfo ().username;
          hasEditModeValue: false
        };
      this.handleInputChange = this.handleInputChange.bind(this);
+     this.handleInputChangeQuantity = this.handleInputChangeQuantity.bind(this);
+
    }
 
-   handleInputChange(event) {
-     const target = event.target;
-     const value = target.type === 'checkbox' ? target.checked : target.value;
-     this.setState({
-       hasEditModeValue: value,
-       quantity: value
-     });
-   }
+
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({
+      hasEditModeValue: value
+    });
+  }
+  handleInputChangeQuantity(event) {
+    const value =   event.target.value;
+    this.setState({
+      quantity: value
+    });
+  }
+
   render(){
        console.log(this)
     let dubleCard=()=>{
@@ -65,13 +75,15 @@ const username = os.userInfo ().username;
                     <h6>Количество:</h6>
                     {this.state.hasEditModeValue &&
                     <>
-                    <input className={cl.quantityedit}
-                      onChange={this.handleInputChange}
-                      type="text"
-                      defaultValue={this.props.quantity}
 
-                      />
-                    <button>ok</button>
+                    <Field name={`${this.props.id}quantity`}
+                      component="input"
+                      type="text"
+                      className={cl.quantityedit}
+                      onChange={this.handleInputChangeQuantity}/>
+
+
+                    <button >ok</button>
                   </>}
                     <h3>{this.state.quantity}</h3>
                   </div>
@@ -79,7 +91,8 @@ const username = os.userInfo ().username;
                 <div className = {cl.name}>{this.props.name}</div>
                 <div className={cl.storageplace}>
                   <h6>Место на складе:</h6>
-                  <div className={cl.quantity}><h3>{this.props.storageplace}</h3></div>
+                  <div className={cl.place}>
+                    <h3>{this.props.storageplace}</h3></div>
                 </div>
                 <div className={cl.customer}>
                   <h6>Поставщик: {this.props.customer}</h6>
@@ -92,5 +105,5 @@ const username = os.userInfo ().username;
           </div>
         )}
       }
-
+// значение после  handleInputChangeQuantity остаются только в локальном стейте
 export default OneStiker

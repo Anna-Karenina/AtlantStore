@@ -1,18 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CustomerListRedux from './util/customerlist/CustomerList';
+import CustomerListRedux from './../util/customerlist/CustomerList';
 import cl from './Stikers.module.css';
 import ReactToPrint from 'react-to-print';
 import OneStiker from './OneStiker';
+import  Navbar from './../util/Navbar/Navbar.jsx'
 
 class Stikers extends React.Component {
   constructor(props){
   super(props);
+console.log(this)
     this.componentRef = React.createRef()
 }
 submit = (values) => {
 console.log(values)
 }
+
   render(){
     const {handleSubmit} = this.props;
     const submit = (values) => console.log(values);
@@ -33,6 +36,8 @@ console.log(values)
       this.props.addConstumerdis(formData)
     }
     return (
+<>
+ <Navbar />
       <div className={cl.windowContainer}>
         <div className={cl.optionMenu}>
           <div className={cl.stickyWrap}>
@@ -60,6 +65,7 @@ console.log(values)
           </form>
         </div>
     </div>
+</>
           )
         }
       }

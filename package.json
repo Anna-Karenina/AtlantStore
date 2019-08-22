@@ -1,7 +1,7 @@
 {
   "name": "Stip",
   "description": "App for print stiker with zebra 420t",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "author": {
     "name": "Anna Karenina",
@@ -16,9 +16,9 @@
       "icon": "./public/icons/icon.icns",
       "category": "public.app-category.utilities"
     },
-  "win": {
-    "icon": "./public/icons/icon.png"
-  },
+    "win": {
+      "icon": "./public/icons/icon.png"
+    },
     "files": [
       "build/**/*",
       "node_modules/**/*",

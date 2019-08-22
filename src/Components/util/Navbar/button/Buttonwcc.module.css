@@ -1,0 +1,28 @@
+.btn {
+border: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  border-right:  1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  max-width: 120px;
+  width: 119px;
+  height: 100%;
+  font-size: 0.8rem;
+}
+
+.btn:hover, .btn:focus {
+  color: #fff;
+  outline: 0;
+}
+
+.first {
+  transition: box-shadow 200ms ease-in-out, color 200ms ease-in-out;
+}
+.first:hover {
+  box-shadow: 0 0 40px 40px rgb(70, 151, 255) inset;
+}

@@ -6,72 +6,52 @@ const url = require('url');
 const isDev = require('electron-is-dev');
 
 
-
-
 let mainWindow;
-let consWindow;
 
 
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 900, height: 680,
-    webPreferences : {webSecurity: false} });
+    webPreferences : {webSecurity: false, nativeWindowOpen: true} });
+
+
     mainWindow.loadURL(isDev ?
       'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
 
-  consWindow = new BrowserWindow({
-      width: 600, height: 480,
-      show: false, modal: true, parent: mainWindow});  //!!доделать
+      const template = [
+        ...(process.platform === 'darwin' ? [{
+          label: app.getName(),
+          submenu: [
+            { role: 'about' },
+            { type: 'separator' },
+            { role: 'services' },
+            { type: 'separator' },
+            { role: 'hide' },
+            { role: 'hideothers' },
+            { role: 'unhide' },
+            { type: 'separator' },
+            { role: 'quit' }
+          ]
+        }] : []),
 
-
-
-
-  const template = [
-    ...(process.platform === 'darwin' ? [{
-      label: app.getName(),
-      submenu: [
-        { role: 'about' },
-        { type: 'separator' },
-        { role: 'services' },
-        { type: 'separator' },
-        { role: 'hide' },
-        { role: 'hideothers' },
-        { role: 'unhide' },
-        { type: 'separator' },
-        { role: 'quit' }
-      ]
-    }] : []),
-
-    {
-      label: 'Редактирование',
-      submenu: [
-        { role: 'reload' },
-        { role: 'forcereload' },
-        { role: 'toggledevtools' },
-        { type: 'separator' },
-        { role: 'togglefullscreen' }
-      ]
-    },
-    {
-      label: 'Поставщики',
-      submenu: [
         {
-          label: 'Редактирование' ,
-          click(){
-            consWindow.loadURL("http://localhost:3000/Consumer")
-            consWindow.show() //!!доделать
-          }
+          label: 'Редактирование',
+          submenu: [
+            { role: 'reload' },
+            { role: 'forcereload' },
+            { role: 'toggledevtools' },
+            { type: 'separator' },
+            { role: 'togglefullscreen' }
+          ]
         },
       ]
-    },
-  ]
-
-  const menu = Menu.buildFromTemplate(template);
-  Menu.setApplicationMenu(menu);
+      const menu = Menu.buildFromTemplate(template);
+      Menu.setApplicationMenu(menu);
 
   mainWindow.on('closed', () => mainWindow = null);
-  consWindow.on('blur',() => consWindow = consWindow.hide() ); //!!доделать
+
 }
+
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {

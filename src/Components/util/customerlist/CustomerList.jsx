@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
 import Select from 'react-select'
-import {addConsAC} from './../../../../Redux/FileReducer'
+import {addConsAC} from './../../../Redux/FileReducer'
 
 
 const formatCustomerForSelect = customer =>({
