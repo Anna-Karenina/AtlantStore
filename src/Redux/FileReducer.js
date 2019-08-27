@@ -109,6 +109,12 @@ const fileReducer = (state = initState, action) =>{
     }
     case SORT_CONSUMER_FROM_FIND :{
       let value = action.newValue
+      let oldcustomers = action.customers
+      if(action.newValue === null){
+        return {
+        customer: oldcustomers
+        }
+      }
       return{
         ...state,
       customer: [ value]
@@ -136,7 +142,7 @@ export const fromFileConsumerAc = (file) => ({ type:FROM_JSON_TO_STATE, file})
 export const fromConsFieldToStateAc = (values) => ({ type:FROM_HANDENTRY_CONS_TO_STATE, values})
 export const consumerDelAc = (items) => ({ type:CONSUMER_DELITE, items})
 export const customCardAc = (value) => ({ type:CUSTOM_CARD_ADD, value})
-export const addSortConsumerAc = (newValue) => ({ type:SORT_CONSUMER_FROM_FIND, newValue })
-export const addSortByNameConsumerAc = (customer) => ({ type:SORT_CONSUMER_BY_NAME, customer})
+export const addSortConsumerAc = (newValue, customers) => ({ type:SORT_CONSUMER_FROM_FIND, newValue ,customers })
+export const addSortByNameConsumerAc = (customer, ) => ({ type:SORT_CONSUMER_BY_NAME, customer})
 
 export default fileReducer;

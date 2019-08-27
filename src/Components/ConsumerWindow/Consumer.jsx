@@ -101,8 +101,8 @@ const Consumer = (props) => {
 }
 const mapDispatchToProps = (dispatch) =>{
   return{
-addSortConsumer: (newValue)=>{
-      dispatch(addSortConsumerAc(newValue))
+addSortConsumer: (newValue, customers)=>{
+      dispatch(addSortConsumerAc(newValue, customers))
     },
 sortiConstodis: (customer)=>{
       dispatch(addSortByNameConsumerAc(customer))
