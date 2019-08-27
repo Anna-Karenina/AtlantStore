@@ -9,26 +9,19 @@ import  Navbar from './../util/Navbar/Navbar.jsx'
 class Stikers extends React.Component {
   constructor(props){
   super(props);
-console.log(this)
     this.componentRef = React.createRef()
 }
-submit = (values) => {
-console.log(values)
-}
-
   render(){
     const {handleSubmit} = this.props;
     const submit = (values) => console.log(values);
-
-    console.log(this)
     let selm = this.props.files.map(p => <OneStiker
       delonestiker ={this.props.delonestiker}
       dublecard ={this.props.dublecard}
        key = {p.id}
-       id={p.id}
-       article={p.article}
-       name={p.name}
-       quantity={p.quantity}
+       id = {p.id}
+       article = {p.article}
+       name = {p.name}
+       quantity = {p.quantity}
        storageplace = {p.storageplace}
        customer = {p.customer}  /> )
 
@@ -54,7 +47,8 @@ console.log(values)
                 </div>
                 <div>
                   <p className = {cl.comment}>
-                    В режиме редактирования доступно изменение значения количества товара в соответствующем поле
+                    В режиме редактирования доступно: <br/> <li>изменение значения количества товара в соответствующем поле</li>
+                    <li>так-же дублирование и удаление карточек</li>
                   </p>
                 </div>
           </div>

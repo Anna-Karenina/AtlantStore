@@ -85,16 +85,17 @@ align-items: center;
 .findcons{
 display: flex;
 flex-direction: row;
-width: 70px;
+width: 220px;
 white-space: pre;
 align-items: center;
 cursor: pointer;
 }
-.sorti i{
+.sortname{
+width: 30%;
 cursor: pointer;
 }
 .findcons img{
-height: 18px;
+height: 28px;
 }
 /* -------------------------------thirdcol */
 .thirdcol{

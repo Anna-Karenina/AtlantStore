@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Buttonwcc from './button/Buttonwcc'
-
+import CustomModalСontainer from './../CustomStikerModal/CustomStikerModal'
 const navstyle={
     backgroundColor: 'rgba(129,129,129, 0.7)',
     position: 'absolute',
@@ -17,13 +17,12 @@ const Navbar = (props) => {
     <ul style = {{
     listStyle: 'none', display: 'flex', margin: "0", height: '100%', padding: '0'}}>
         <li><Link to="/"><Buttonwcc props={"Главная"}/></Link></li>
-        <li><Link to='/Consumer'
-                ><Buttonwcc props={"Поставщики"}/>
+        <li><Link to='/Consumer'>
+            <Buttonwcc props={"Поставщики"}/>
         </Link></li>
-        <li onClick={ ()=>alert('функция в разработке') }>
-            <Buttonwcc props={"Создать Стикер"}/>
+        <li>
+            <CustomModalСontainer />
         </li>
-
     </ul>
   </div>
   )

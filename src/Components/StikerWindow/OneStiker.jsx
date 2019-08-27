@@ -6,8 +6,8 @@ const os = require ('os');
 const username = os.userInfo ().username;
 
 
- class OneStiker extends React.Component {
-   constructor(props) {
+class OneStiker extends React.Component {
+  constructor(props) {
      super(props);
        this.state = {
          quantity : this.props.quantity,
@@ -15,10 +15,7 @@ const username = os.userInfo ().username;
        };
      this.handleInputChange = this.handleInputChange.bind(this);
      this.handleInputChangeQuantity = this.handleInputChangeQuantity.bind(this);
-
    }
-
-
 
   handleInputChange(event) {
     const target = event.target;
@@ -33,10 +30,8 @@ const username = os.userInfo ().username;
       quantity: value
     });
   }
-
   render(){
-       console.log(this)
-    let dubleCard=()=>{
+    const dubleCard=()=>{
       this.props.dublecard(this.props.id)
     }
     let delOneStiker=()=>{
@@ -83,7 +78,6 @@ const username = os.userInfo ().username;
                       onChange={this.handleInputChangeQuantity}/>
 
 
-                    <button >ok</button>
                   </>}
                     <h3>{this.state.quantity}</h3>
                   </div>

@@ -11,7 +11,7 @@ const FileList = (props) => {
       let filename = props.droppedFiles.droppedFiles[0].name
       let fileExtension = props.droppedFiles.droppedFiles[0].type
       if(fileExtension !== "application/vnd.ms-excel" && fileExtension !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ){
-        return(alert("Не верный тип файла, используйте xlsx"),
+        return(alert("Не верный тип файла, используйте xlsx или xls"),
                       <div>Нет подкинутых файлов</div>)
       }
         dropped  = excelToJson({

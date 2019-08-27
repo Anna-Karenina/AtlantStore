@@ -25,7 +25,12 @@ useEffect( () => {
   }
 console.log(cards)
   return (
-      <div style={{display: 'flex', justifyContent: 'center', alignItems:'center', flexDirection: 'column'}}>
+      <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems:'center',
+      flexDirection: 'column',
+      marginTop: '15px'}}>
         {cards.map(card => (
           <Card
             key={card.id}

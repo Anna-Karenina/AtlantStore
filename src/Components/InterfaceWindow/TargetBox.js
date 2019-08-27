@@ -8,16 +8,15 @@ const stylebox = {
   borderRadius: '20px',
   width: '480px',
   height: '380px',
-  fontFamily: 'sans-serif',
   fontSize: '1.2rem',
   fontWeight: '500',
   padding: '20px',
-  backgroundColor: 'rgba(129,129,129, 0.5)',
+  backgroundColor: 'rgba(129,129,129, 0.7)',
   transition: '0.3s',
-  color: '#fff'
+  color: 'cyan '
 }
 const styleActive = {
-  backgroundColor: 'rgba(129,129,129, 0.7)',
+  backgroundColor: 'rgba(129,129,129, 0.4)',
   border: "2.5px dashed purple",
   display: 'flex',
   justifyContent: "center",
@@ -36,7 +35,7 @@ const TargetBox = ({ canDrop, isOver, connectDropTarget }) => {
   const isActive = canDrop && isOver
   return connectDropTarget(
     <div style={isActive ? (stylebox, styleActive) : stylebox }>
-        {isActive ? 'Отпускай' : 'Перетащите файл сюда'}
+        {isActive ? 'Отпускай' : 'Перетащите файл в эту область'}
     </div>
   )
 }

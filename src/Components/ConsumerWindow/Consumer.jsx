@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }   from 'react';
 import cl from './Customer.module.css'
 import { connect } from 'react-redux';
 import RecyclingBin from './RecyclingBin'
@@ -6,10 +6,10 @@ import SourceBox from './SourceBox'
 import ConsumerField from './ConsumerField'
 import  Navbar from './../util/Navbar/Navbar.jsx'
 import lens from './lens.png'
+import {addSortConsumerAc, addSortByNameConsumerAc} from './../../Redux/FileReducer'
+import FindSelect from './FindSelect'
 const fs = require('fs');
 const path = require('path')
-
-
 
 const consdir = path.join(require('electron').remote.app.getAppPath(), '../', '/Consumer')
 
@@ -22,17 +22,23 @@ const savetodb =(customer)=>{
   });
 }
 
-const sorte = (customer) =>{
-alert("Функция в разработке")
+
+const sorte = (customer ,sortiConstodis) =>{
+console.log(customer ,sortiConstodis)
+customer.sort((a, b)=>{
+let nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+if (nameA < nameB)
+  return -1
+if (nameA > nameB)
+  return 1
+return 0
+})
+sortiConstodis(customer)
 }
 
-
-
-let Consumer = (props) => {
-console.log(props)
+const Consumer = (props) => {
  return(
-
-<>
+  <>
  <Navbar />
   <div className = {cl.mainWrapper}>
    <div className = {cl.firscol}>
@@ -60,13 +66,20 @@ console.log(props)
 
     <div className = {cl.listwrapper}>
      <div className={cl.sorti}>
-       <div>
-          <i onClick = { ()=>sorte(props.customer) }>
-            Сортировать по названию
+       <div className={cl.sortname}>
+          <i onClick = { ()=>sorte(props.customer, props.sortiConstodis) }>
+            Сортировать от А до Я
           </i>
        </div>
-       <div className={cl.findcons} onClick = { ()=>sorte(props.customer) }>
-          <img src={lens} alt="" /> <p> Поиск</p>
+
+       <div className={cl.findcons}>
+          <img src={lens} alt="" />
+        <div style={{width: '100%', marginLeft: '5px'}}>
+            <FindSelect
+                    customer = {props.customer}
+                    addSortConsumer = {props.addSortConsumer}/>
+        </div>
+
        </div>
      </div>
 
@@ -86,8 +99,19 @@ console.log(props)
 </>
   )
 }
+const mapDispatchToProps = (dispatch) =>{
+  return{
+addSortConsumer: (newValue)=>{
+      dispatch(addSortConsumerAc(newValue))
+    },
+sortiConstodis: (customer)=>{
+      dispatch(addSortByNameConsumerAc(customer))
+    }
+  }
+}
+
 const ConsumerC = connect( state => ({
   customer: state.fileReducer.customer
-}), null)(Consumer)
+}), mapDispatchToProps)(Consumer)
 
 export default ConsumerC
