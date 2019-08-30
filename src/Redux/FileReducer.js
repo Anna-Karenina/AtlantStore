@@ -9,11 +9,12 @@ const CONSUMER_DELITE = 'CONSUMER_DELITE'
 const CUSTOM_CARD_ADD = 'CUSTOM_CONSUMER_ADD'
 const SORT_CONSUMER_FROM_FIND = 'SORT_CONSUMER_FROM_FIND'
 const SORT_CONSUMER_BY_NAME = 'SORT_CONSUMER_BY_NAME'
+const SORT_CONSUMER_BY_POSITION = 'SORT_CONSUMER_BY_POSITION'
 
 let initState = {
   files : [],
   customer: [],
-  fileNames:[]
+  fileNames:[],
 }
 const fileReducer = (state = initState, action) =>{
   switch(action.type){
@@ -80,7 +81,6 @@ const fileReducer = (state = initState, action) =>{
       let oldvalues ={...state.customer.find(item => item.id === values.id)}
       if(values.id === oldvalues.id){
         values.id = (parseInt(values.id)+1).toString()
-
       }
       return{
         ...state,
@@ -112,6 +112,7 @@ const fileReducer = (state = initState, action) =>{
       let oldcustomers = action.customers
       if(action.newValue === null){
         return {
+        ...state,
         customer: oldcustomers
         }
       }
@@ -123,6 +124,14 @@ const fileReducer = (state = initState, action) =>{
 
     case SORT_CONSUMER_BY_NAME :{
       let value = action.customer
+      return{
+        ...state,
+      customer: [...value]
+      }
+    }
+    case SORT_CONSUMER_BY_POSITION :{
+      let value = action.cards
+console.log(value)
       return{
         ...state,
       customer: [...value]
@@ -144,5 +153,7 @@ export const consumerDelAc = (items) => ({ type:CONSUMER_DELITE, items})
 export const customCardAc = (value) => ({ type:CUSTOM_CARD_ADD, value})
 export const addSortConsumerAc = (newValue, customers) => ({ type:SORT_CONSUMER_FROM_FIND, newValue ,customers })
 export const addSortByNameConsumerAc = (customer, ) => ({ type:SORT_CONSUMER_BY_NAME, customer})
+
+export const addSortByPositionConsumerAc = (cards) => ({ type:SORT_CONSUMER_BY_POSITION, cards})
 
 export default fileReducer;

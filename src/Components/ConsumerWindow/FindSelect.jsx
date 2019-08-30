@@ -5,11 +5,8 @@ import CreatableSelect from 'react-select/creatable';
 
 
 const CreatableSingle = (props) =>{
-
-console.log(props)
 props.customer.map(i=> i.label=i.name) //Реакт-селект  вывод только по метке добавляем метку
 const [customers, setCustomer] = useState(props.customer);
-console.log(customers)
 let  handleChange = (newValue: any, actionMeta: any) => {
     console.group('Value Changed');
     console.log(newValue);

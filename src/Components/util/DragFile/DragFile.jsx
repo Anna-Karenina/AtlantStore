@@ -1,10 +1,9 @@
 import React from 'react'
 import cl from './DragFile.module.css'
-
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-let DragFile = (props) =>{
+const DragFile = (props) =>{
  if(props.filesNames.length !== 0){
   return(
 <>
@@ -21,7 +20,7 @@ let DragFile = (props) =>{
     </div>
 </>
      )}
-     return <div></div>
+     return <> </>
   }
 
 const mapStateToProps = (state) =>{
@@ -29,5 +28,5 @@ const mapStateToProps = (state) =>{
         filesNames: state.fileReducer.fileNames
   }
 }
-const DragFileContainer = connect (mapStateToProps)(DragFile);
+const DragFileContainer = connect (mapStateToProps, null)(DragFile);
 export default DragFileContainer

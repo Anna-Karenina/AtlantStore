@@ -10,16 +10,19 @@ const path = require('path')
 const consdir = path.join(require('electron').remote.app.getAppPath(), '../', '/Consumer')
 
 class App extends React.Component {
+constructor(props){
+super(props)
+  let file = JSON.parse(fs.readFileSync(`${consdir}/Consumer.json` , function(err, data){
+          if(err){console.error(err)}
+          else {
+          console.log(data);
+          }
+      }))
+  if(!this.props.customer.length ){
+   this.props.addNewConsumertoStatedis(file);
+  }
+}
   render(){
-    let file = JSON.parse(fs.readFileSync(`${consdir}/Consumer.json` , function(err, data){
-            if(err){console.error(err)}
-            else {
-            console.log(data);
-            }
-        }))
-    if(!this.props.customer.length ){
-     this.props.addNewConsumertoStatedis(file);
-    }
     return (
         <div className="App">
             <div className="wrapper">

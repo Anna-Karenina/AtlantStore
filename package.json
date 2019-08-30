@@ -41,6 +41,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.5",
     "react-select": "^3.0.4",
+    "react-use": "^11.3.2",
     "redux": "1.0.0-rc",
     "redux-form": "^8.2.4"
   },

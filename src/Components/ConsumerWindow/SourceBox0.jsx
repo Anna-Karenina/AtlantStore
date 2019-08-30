@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import  { useInterval } from 'react-use'
+
 import Card from './Card'
 import update from 'immutability-helper'
 
 const SourceBox = (props) => {
-console.log(props)
   const [cards, setCards] = useState(props.customer)
-  const [delay, setDelay] = React.useState(5000);
   const moveCard = (id, atIndex) => {
     const { card, index } = findCard(id)
     setCards(
@@ -26,15 +24,6 @@ useEffect( () => {
       index: cards.indexOf(card),
     }
   }
-
-
-
-
-useInterval(  () => {
-  props.sortposConstodis(cards)
-  console.log('im here')
-}, delay);
-
 console.log(cards)
   return (
       <div style={{

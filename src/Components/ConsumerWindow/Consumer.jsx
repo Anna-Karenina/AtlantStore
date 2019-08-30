@@ -6,7 +6,10 @@ import SourceBox from './SourceBox'
 import ConsumerField from './ConsumerField'
 import  Navbar from './../util/Navbar/Navbar.jsx'
 import lens from './lens.png'
-import {addSortConsumerAc, addSortByNameConsumerAc} from './../../Redux/FileReducer'
+import {addSortConsumerAc,
+        addSortByNameConsumerAc,
+        addSortByPositionConsumerAc
+        } from './../../Redux/FileReducer'
 import FindSelect from './FindSelect'
 const fs = require('fs');
 const path = require('path')
@@ -24,7 +27,6 @@ const savetodb =(customer)=>{
 
 
 const sorte = (customer ,sortiConstodis) =>{
-console.log(customer ,sortiConstodis)
 customer.sort((a, b)=>{
 let nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
 if (nameA < nameB)
@@ -83,7 +85,8 @@ const Consumer = (props) => {
        </div>
      </div>
 
-     <SourceBox customer={props.customer} />
+     <SourceBox customer={props.customer} 
+       sortposConstodis= {props.sortposConstodis}/>
     </div>
 
    </div>
@@ -106,6 +109,9 @@ addSortConsumer: (newValue, customers)=>{
     },
 sortiConstodis: (customer)=>{
       dispatch(addSortByNameConsumerAc(customer))
+    },
+sortposConstodis: (cards)=>{
+      dispatch(addSortByPositionConsumerAc(cards))
     }
   }
 }
