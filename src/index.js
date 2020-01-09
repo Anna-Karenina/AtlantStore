@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import './index.css';
-import * as serviceWorker from './serviceWorker';
 import store from './Redux/Redux-store';
 import {HashRouter} from "react-router-dom";
 import { Provider } from 'react-redux';
@@ -18,10 +15,7 @@ setTimeout(()=>{
                     <Router />
                 </DndProvider>
         </Provider>
-
-
    </HashRouter>,  document.getElementById('root'));
 },0)
 
 
-serviceWorker.unregister();

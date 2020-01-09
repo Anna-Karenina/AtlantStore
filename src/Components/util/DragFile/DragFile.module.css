@@ -5,9 +5,10 @@
   border-radius: 4px;
   justify-content: center;
   align-items: center;
-  top: 200px;
+  top: 220px;
   position: fixed;
   padding: 4px;
+  margin-left: 5px;
   color: #fff
 }
 .dragcont:hover {

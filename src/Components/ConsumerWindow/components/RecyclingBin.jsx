@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { useDrop } from 'react-dnd'
-import ItemTypes from './ItemTypes'
-import { connect } from 'react-redux';
-import {consumerDelAc} from './../../Redux/FileReducer'
+import ItemTypes from '../ItemTypes'
+const recyclingbin = require('./../../../assets/recyclingbin2.png')
 
 const TargetBox = ({ onDrop, items }) => {
   const [{ isOver,canDrop }, drop] = useDrop({
@@ -16,25 +15,24 @@ const TargetBox = ({ onDrop, items }) => {
       canDrop: monitor.canDrop()
     }),
   })
+  const pstyle = {color:'#fafafa'}
   const opacity = isOver ? 1 : 0.7
   const border = isOver ?  "1.5px dashed purple" : 'none'
   return (
     <div ref={drop} style={{opacity, border}} >
-     <img src = {require('./recyclingbin2.png')} alt = '1' />
+     <img src = {recyclingbin} alt = '1' />
       {!canDrop  && items
-         && <p>Удалено: {items.name}</p>
+         && <p style={pstyle}>Удалено: {items.name}</p>
       }
       {canDrop
-         && <p>Сортируйте!</p>
+         && <p style={pstyle}>Сортируйте!</p>
       }
     </div>
   )
 }
 
 
-const RecyclingBin = props => {
-let customer = props.customer
-let consdeldis = props.consdeldis
+const RecyclingBin = ({customer, consdeldis}) => {
   const [items, setLastDroppedItem] = useState(customer)
   const handleDrop = useCallback(
     items => (setLastDroppedItem(items)), [])
@@ -43,22 +41,10 @@ consdeldis(items);
 }
   return (
     <TargetBox
-      {...props}
       items={items}
       onDrop={handleDrop}
     />
   )
 }
-const mapDispatchToProps = (dispatch) =>{
-  return{
- consdeldis: (items)=>{
-      dispatch(consumerDelAc(items))
-    }
-  }
-}
-const RecyclingBinC = connect( state =>
-({customer: state.fileReducer.customer }),
-  mapDispatchToProps
-)(RecyclingBin)
 
-export default RecyclingBinC
+export default RecyclingBin

@@ -6,7 +6,7 @@ import update from 'immutability-helper'
 const SourceBox = (props) => {
 console.log(props)
   const [cards, setCards] = useState(props.customer)
-  const [delay, setDelay] = React.useState(5000);
+  const [delay,] = React.useState(5000);
   const moveCard = (id, atIndex) => {
     const { card, index } = findCard(id)
     setCards(
@@ -27,10 +27,7 @@ useEffect( () => {
     }
   }
 
-
-
-
-useInterval(  () => {
+useInterval( () => {
   props.sortposConstodis(cards)
   console.log('im here')
 }, delay);

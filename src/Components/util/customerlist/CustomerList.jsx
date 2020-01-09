@@ -44,7 +44,10 @@ const CustomerList = props => {
   const { handleSubmit , customer } = props;
   return (
     <form onChange={handleSubmit}>
-      <Field name="constumer" component={ReduxFormSelect} options={customer} />
+      <Field 
+        name="constumer" 
+        component={ReduxFormSelect} 
+        options={customer} />
     </form>
   )
 }

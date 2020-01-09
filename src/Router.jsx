@@ -2,7 +2,7 @@ import React from "react"
 import { HashRouter, Route, Switch } from "react-router-dom"
 import AppC from "./App";
 import StikersContainer from "./Components/StikerWindow/StikersContainer";
-import ConsumerC from "./Components/ConsumerWindow/Consumer.jsx"
+import ConsumerC from "./Components/ConsumerWindow/ContainerConsumerWindow"
 
 
 const Router = () => (

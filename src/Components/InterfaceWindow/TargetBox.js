@@ -1,5 +1,7 @@
 import React from 'react'
 import { DropTarget } from 'react-dnd'
+import { AiOutlineCloudUpload } from 'react-icons/ai'
+
 const stylebox = {
   display: 'flex',
   justifyContent: "center",
@@ -24,18 +26,27 @@ const styleActive = {
   borderRadius: '20px',
   width: '480px',
   height: '380px',
-  fontFamily: 'sans-serif',
   fontSize: '2rem',
   padding: '20px',
   transition: '0.3s',
   color: 'purple'
+}
+const article ={
+  display:'flex',
+  flexDirection: 'column',
+  justifyContent: "center",
+  alignItems: "center",
 }
 
 const TargetBox = ({ canDrop, isOver, connectDropTarget }) => {
   const isActive = canDrop && isOver
   return connectDropTarget(
     <div style={isActive ? (stylebox, styleActive) : stylebox }>
-        {isActive ? 'Отпускай' : 'Перетащите файл в эту область'}
+        {isActive ? 'Отпускай' : 
+        <div style = {article} >
+        <AiOutlineCloudUpload style={{width: '80px', height: 'auto'}}/>
+        <p>Перетащите файл в эту область</p>
+        </div>}
     </div>
   )
 }

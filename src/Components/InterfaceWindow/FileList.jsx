@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom'
 const excelToJson = require('convert-excel-to-json');
 
 
-
+const styleddiv={
+  color:'cyan',
+  textShadow: '1px 1px  black'
+}
 const FileList = (props) => {
   let dropped = {}
     if (props.droppedFiles.taked === true ){
@@ -11,8 +14,9 @@ const FileList = (props) => {
       let filename = props.droppedFiles.droppedFiles[0].name
       let fileExtension = props.droppedFiles.droppedFiles[0].type
       if(fileExtension !== "application/vnd.ms-excel" && fileExtension !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ){
-        return(alert("Не верный тип файла, используйте xlsx или xls"),
-                      <div>Нет подкинутых файлов</div>)
+        return(
+          alert("Не верный тип файла, используйте xlsx или xls"),
+          <div style={styleddiv}>Нет подкинутых файлов</div>)
       }
         dropped  = excelToJson({
           sourceFile: path,
@@ -32,11 +36,12 @@ const FileList = (props) => {
 
   }
     return props.files.length === 0 ? (
-      <div>Нет подкинутых файлов
-      </div>
+      <div style={styleddiv}>Нет подкинутых файлов</div>
     ) : (
         <div>
-            <Link to='Stikers' >Загрузка завершена</Link>
+            <Link to='Stikers' style={styleddiv}>
+              Загрузка завершена
+            </Link>
        </div>
    )
 }

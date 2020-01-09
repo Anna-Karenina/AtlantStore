@@ -1,20 +1,17 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import CreatableSelect from 'react-select/creatable';
-
-
-
 
 const CreatableSingle = (props) =>{
 props.customer.map(i=> i.label=i.name) //Реакт-селект  вывод только по метке добавляем метку
-const [customers, setCustomer] = useState(props.customer);
-let  handleChange = (newValue: any, actionMeta: any) => {
+const [customers] = useState(props.customer);
+let  handleChange = (newValue, actionMeta) => {
     console.group('Value Changed');
     console.log(newValue);
     console.log(`action: ${actionMeta.action}`);
     console.groupEnd();
     props.addSortConsumer(newValue, customers)
   };
-let  handleInputChange = (inputValue: any, actionMeta: any) => {
+let  handleInputChange = (inputValue, actionMeta) => {
     console.group('Input Changed');
     console.log(inputValue);
     console.log(`action: ${actionMeta.action}`);
@@ -22,6 +19,7 @@ let  handleInputChange = (inputValue: any, actionMeta: any) => {
   };
     return (
       <CreatableSelect
+       width='100%'
         isClearable
         placeholder ={'Начинайте ввод'}
         onChange={handleChange}

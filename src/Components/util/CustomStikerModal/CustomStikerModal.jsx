@@ -6,35 +6,65 @@ import { Field, reduxForm } from 'redux-form';
 import Modal from 'react-modal';
 import cl from './../Navbar/button/Buttonwcc.module.css'
 import {customCardAc} from './../../../Redux/FileReducer'
-
+import { MdChat} from 'react-icons/md'
+import {validate, RenderField} from './Validation'
+const { ipcRenderer } = require('electron')
 
 Modal.setAppElement('#root')
 
-class CustomStikerModal extends React.Component {
-  constructor () {
-   super();
+
+
+class CustomStikerModal extends React.PureComponent {
+  constructor(props) {
+   super(props);
    this.state = {
-    showModal: false
+    showModal: false,
+    files: []
    };
      this.handleOpenModal = this.handleOpenModal.bind(this);
      this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+  componentDidMount(){  
+    ipcRenderer.send('modalready', 'ready')
+    ipcRenderer.on('clisck', (event, arg) => {
+      console.log(arg) 
+    })
+  }
+
+  componentDidUpdate(prevState){
+      if(this.props.files !== prevState.files){
+        this.setState((props)=>{
+          return { files: this.props.files  }
+        })
+      }
+      return this.state.files
+  }
+    submit = (values) => {
+      this.props.addConstumerdis(values)
+        this.props.reset()      
     }
     handleOpenModal () {
-      this.setState({ showModal: true });
+      this.setState({showModal: true});
     }
     handleCloseModal () {
-      this.setState({ showModal: false });
+      this.setState({showModal: false});
     }
-
-    render () {
-console.log(this)
-      const submit = (values) => {
-        this.props.addConstumerdis(values)
-      }
+    render() {
       return (
       <>
-      <button className={cl.btn+ ' ' + cl.first} onClick={this.handleOpenModal}>Создать Стикер</button>
-        <ReactModal isOpen={this.state.showModal}
+      {console.log(this.props)}
+      <button 
+        className={cl.btn+ ' ' + cl.first} 
+        onClick={this.handleOpenModal}>
+          <MdChat style ={{ 
+              width: '25px', 
+              height: 'auto',
+              color: '#fafafa',
+          }}/>
+          Создать Стикер
+      </button>
+        <ReactModal 
+         isOpen={this.state.showModal}
          onRequestClose={this.handleCloseModal}
          style={{ overlay: {
             backgroundColor: 'rgba(2,2,2,0.6)',
@@ -55,15 +85,15 @@ console.log(this)
                 }
               }}>
             <i>Создание стикера</i>
-    <form onSubmit={this.props.handleSubmit(submit)} className={cl.form}>
+    <form onSubmit={this.props.handleSubmit(this.submit)} className={cl.form}>
       <div>
         <div className={cl.fieldswrap}>
           <Field
             className={cl.fields}
             name="article"
-            component="input"
+            component={RenderField}
             type="text"
-            placeholder="Артикул"
+            label="Артикул"
           />
         </div>
       </div>
@@ -72,53 +102,79 @@ console.log(this)
           <Field
             className={cl.fields}
             name="name"
-            component="input"
+            component={RenderField}
             type="text"
-            placeholder="Наименование"
+            label={'Наименование'}
           />
         </div>
       </div>
       <div>
-        <div>
+        <div style={{display: 'flex'}}>
           <Field
             className={cl.minifields}
             name="storageplace"
-            component="input"
+            component={RenderField}
             type="text"
-            placeholder="Место"
+            label="Место"
           />
           <Field
             className={cl.minifields}
             name="quantity"
-            component="input"
+            component={RenderField}
             type="number"
-            placeholder=" Кол-во"
+            label="Кол-во"
           />
         </div>
         </div>
-<div className={cl.buttonstack}>
-  <button type="submit">Сохранить</button>
-  <Link to='Stikers' ><button>Печать</button></Link>
-</div>
-
+        {!!this.props.valid ? 
+          <div className={cl.buttonstack}>
+            <button 
+              type="submit" 
+              disabled={!this.props.valid || this.props.submitting} 
+            >
+                Сохранить
+            </button>
+            <Link to='Stikers'>
+              <button disabled={!this.props.valid}>
+                Печать
+              </button>
+            </Link>
+          </div> :
+          <span className={cl.buttonstack}>
+            {this.props.touched && ((this.props.error && <span>{this.props.error}</span>) )} 
+          </span>
+        }
     </form>
+    <ul>
+        {
+        this.state.files === undefined ? null :
+          this.state.files.map( i =>
+            <li key ={i.id}>
+              {i.article}
+            </li>
+          )
+        }
+    </ul>
           </ReactModal>
         </>
       );
     }
   }
+
 const mapDispatchToProps = (dispatch) =>{
   return{
     addConstumerdis: (values)=>{
-        values.id = "1"
+        values.id = 'id' + (new Date()).getTime();
         dispatch(customCardAc(values))
       }
   }
 }
   const CustomModalСontainer = connect (
-    null, mapDispatchToProps
+    ({ fileReducer }) => fileReducer
+    , mapDispatchToProps
   )(reduxForm({
-    form: 'stikerValuese'
+    form: 'stikerValuese',
+    validate
   })(CustomStikerModal));
 
 export default CustomModalСontainer

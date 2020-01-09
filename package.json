@@ -1,11 +1,11 @@
 {
   "name": "Stip",
   "description": "App for print stiker with zebra 420t",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "author": {
     "name": "Anna Karenina",
-    "email": "",
+    "email": "svrTeile@gmail.com",
     "url": "https://github.com/Anna-Karenina"
   },
   "build": {
@@ -17,7 +17,16 @@
       "category": "public.app-category.utilities"
     },
     "win": {
-      "icon": "./public/icons/icon.png"
+      "icon": "./public/icons/icon.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
     },
     "files": [
       "build/**/*",
@@ -56,29 +65,30 @@
     "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
     "preelectron-pack": "yarn build",
-    "electron-pack": "build -m",
-    "electron-pack-w32": "build --win --ia32"
+    "electron-pack-w32": "yarn electron-builder --windows nsis:ia32",
+    "electron-pack-m": "yarn electron-builder -m",
+    "electron-pack-win": "yarn electron-builder -w"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "@rescripts/cli": "^0.0.10",
+    "@rescripts/rescript-env": "^0.0.5",
+    "concurrently": "^4.1.0",
+    "electron": "^4.0.6",
+    "electron-builder": "^22.2.0",
+    "electron-devtools-installer": "^2.2.4",
+    "immutability-helper": "^3.0.1",
+    "react-icons": "^3.8.0",
+    "react-to-print": "^2.3.0",
+    "redux-devtools-extension": "^2.13.8",
+    "wait-on": "^3.2.0"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "@rescripts/cli": "^0.0.10",
-    "@rescripts/rescript-env": "^0.0.5",
-    "concurrently": "^4.1.0",
-    "electron": "^4.0.6",
-    "electron-builder": "^20.38.5",
-    "electron-devtools-installer": "^2.2.4",
-    "immutability-helper": "^3.0.1",
-    "react-to-print": "^2.3.0",
-    "redux-devtools-extension": "^2.13.8",
-    "typescript": "^3.3.3333",
-    "wait-on": "^3.2.0"
-  }
+  ]
 }

@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body{
+  margin: 0 ;
+  width: 100vw;
+  height: 100vh;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.App{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: center /cover no-repeat url(./assets/unnamed.png) ;
+  
+}
+.wrapper{
+  background-color: rgba(128, 128, 128, 0.4);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+a {
+  font-weight: 300;
+  color: #fff;
+  font-family: sans-serif;
+}

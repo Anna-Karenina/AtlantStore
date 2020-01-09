@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDrag, useDrop } from 'react-dnd'
-import ItemTypes from './ItemTypes'
+import ItemTypes from '../ItemTypes'
 
 const style = {
   margin: '.1rem',
@@ -28,6 +28,7 @@ const Card = ({ id, name, moveCard, findCard }) => {
       }
     },
   })
+
   const opacity = isDragging ? 0.4 : 1
   const border = isDragging ? '1px solid #BBBBBB ' : '1px solid #BBBBBB'
   const boxShadow =  isDragging ? '0 3px 4px rgba(116, 116, 116, 0.3)' : 'none'
