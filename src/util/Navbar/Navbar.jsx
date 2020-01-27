@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Buttonwcc from './button/Buttonwcc'
-import Modal from './../CustomStikerModal/CustomStikerModal'
+import CustomStiker from '../CustomStikerModal/CustomStikerModal'
 import {MdDeleteForever, MdSupervisorAccount} from 'react-icons/md'
-import {TiHome} from 'react-icons/ti'
+import { FaBoxOpen} from 'react-icons/fa'
+import { TiHome } from 'react-icons/ti'
 import { connect } from 'react-redux';
-import {deleteAllFilesAC} from './../../../Redux/FileReducer'
+import { deleteAllFilesAC } from '../../Redux/FileReducer'
 
 const navstyle={
     backgroundColor: 'rgba(129,129,129, 0.7)',
@@ -16,17 +17,17 @@ const navstyle={
     height: '6%',
 }
 const ulstyle={
-    listStyle: 'none', 
-    display: 'flex', 
-    margin: "0", 
-    height: '100%', 
+    listStyle: 'none',
+    display: 'flex',
+    margin: "0",
+    height: '100%',
     padding: '0',
 }
 const listyle ={
   textDecoration: 'none'
 }
 const iconstyle={
-  width: '25px', 
+  width: '25px',
   height: 'auto',
   color: '#fafafa',
 }
@@ -40,10 +41,10 @@ const Navbar = (props) => {
     <ul style = {ulstyle}>
         <li>
           <Link to="/" style = {listyle}>
-           <Buttonwcc 
+           <Buttonwcc
             title={"Главная"}
-              child= { 
-                <TiHome 
+              child= {
+                <TiHome
                  style={iconstyle}/>
               }
             />
@@ -51,7 +52,7 @@ const Navbar = (props) => {
         </li>
         <li>
           <Link to='/Consumer' style = {listyle}>
-            <Buttonwcc 
+            <Buttonwcc
               title={"Поставщики"}
               child= {
                 <MdSupervisorAccount
@@ -61,18 +62,31 @@ const Navbar = (props) => {
           </Link>
         </li>
         <li>
-            <Modal />
+            <CustomStiker />
         </li>
         <li
           onClick={()=>props.deleteAllFiles()} >
-        <Buttonwcc 
-          title={"Очистить"} 
+        <Buttonwcc
+          title={"Очистить"}
             child = {
-              <MdDeleteForever 
-                style={iconstyle} 
+              <MdDeleteForever
+                style={iconstyle}
               />
               }
-            /> 
+            />
+        </li>
+        <li
+          onClick={()=>alert('в разработке')} >
+          <Link to='/postingonstorage' style = {listyle}>
+            <Buttonwcc
+              title={" Приходование товара"}
+                child = {
+                  <FaBoxOpen
+                    style={iconstyle}
+                  />
+                  }
+                />
+          </Link>
         </li>
     </ul>
   </div>

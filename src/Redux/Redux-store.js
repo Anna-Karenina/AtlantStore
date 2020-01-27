@@ -1,10 +1,14 @@
 import { combineReducers, createStore } from 'redux';
 import fileReducer from  './FileReducer';
+import PostStorageReducer from  './PostStorageReducer';
+import customerReducer from  './ConsumerReducer';
 import { reducer as formReducer } from 'redux-form'
 
 let reducer = combineReducers({
-  fileReducer : fileReducer,
-  form: formReducer
+  fileReducer,
+  form: formReducer,
+  PostStorageReducer,
+  customerReducer
 });
 
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
 import Select from 'react-select'
-import {addConsAC} from './../../../Redux/FileReducer'
+import { addConsAC } from '../../Redux/FileReducer'
 
 
 const formatCustomerForSelect = customer =>({
@@ -12,7 +12,7 @@ const formatCustomerForSelect = customer =>({
 
 const mapStateToProps = (state) =>{
   let  initialValues = {}
-  initialValues.currentCustomer = (state.fileReducer.customer)
+  initialValues.currentCustomer = (state.customerReducer.customer)
   .map(formatCustomerForSelect);
  return{
    customer: initialValues.currentCustomer
@@ -21,9 +21,9 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-  addConstumerdis: (formData)=>{
-      dispatch(addConsAC(formData))
-    }
+   addConstumerdis: (formData)=>{
+     dispatch(addConsAC(formData))
+   }
   }
 }
 

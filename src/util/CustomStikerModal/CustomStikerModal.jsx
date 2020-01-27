@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import Modal from 'react-modal';
 import cl from './../Navbar/button/Buttonwcc.module.css'
-import {customCardAc} from './../../../Redux/FileReducer'
+import {customCardAc} from '../../Redux/FileReducer'
 import { MdChat} from 'react-icons/md'
 import {validate, RenderField} from './Validation'
 const { ipcRenderer } = require('electron')
@@ -26,7 +26,7 @@ class CustomStikerModal extends React.PureComponent {
   }
   componentDidMount(){  
     ipcRenderer.send('modalready', 'ready')
-    ipcRenderer.on('clisck', (event, arg) => {
+    ipcRenderer.on('click', (event, arg) => {
       console.log(arg) 
     })
   }
@@ -41,7 +41,7 @@ class CustomStikerModal extends React.PureComponent {
   }
     submit = (values) => {
       this.props.addConstumerdis(values)
-        this.props.reset()      
+             
     }
     handleOpenModal () {
       this.setState({showModal: true});
@@ -52,7 +52,6 @@ class CustomStikerModal extends React.PureComponent {
     render() {
       return (
       <>
-      {console.log(this.props)}
       <button 
         className={cl.btn+ ' ' + cl.first} 
         onClick={this.handleOpenModal}>
@@ -135,7 +134,9 @@ class CustomStikerModal extends React.PureComponent {
                 Сохранить
             </button>
             <Link to='Stikers'>
-              <button disabled={!this.props.valid}>
+              <button 
+                onClick = {()=>this.props.reset() }
+                disabled={!this.props.valid}>
                 Печать
               </button>
             </Link>
@@ -149,7 +150,7 @@ class CustomStikerModal extends React.PureComponent {
         {
         this.state.files === undefined ? null :
           this.state.files.map( i =>
-            <li key ={i.id}>
+            <li key ={i.id + new Date()}>
               {i.article}
             </li>
           )

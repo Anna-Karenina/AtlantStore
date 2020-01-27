@@ -2,8 +2,8 @@ import React, { useState, useMemo } from 'react'
 import { NativeTypes } from 'react-dnd-html5-backend'
 import TargetBox from './TargetBox'
 import FileListContainer from './FileListContainer.jsx'
-import DragFileContainer from './../util/DragFile/DragFile.jsx'
-import  Navbar from './../util/Navbar/Navbar.jsx'
+import DragFileContainer from './../../util/DragFile/DragFile'
+import  Navbar from './../../util/Navbar/Navbar'
 const { FILE } = NativeTypes
 
 const mainScreen = {

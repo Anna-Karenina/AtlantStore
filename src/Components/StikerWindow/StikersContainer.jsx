@@ -5,23 +5,23 @@ import { reduxForm } from 'redux-form';
 
 const mapStateToProps = (state) =>{
   return{
-        files: state.fileReducer.files,
-        initialValues:{
-          checked: false
-        }
+    files: state.fileReducer.files,
+    initialValues:{
+      checked: false
+    }
   }
 }
 const mapDispatchToProps = (dispatch) =>{
   return{
-  addConstumerdis: (formData)=>{
-      dispatch(addConsAC(formData))
+    addConstumerdis: (formData)=>{
+        dispatch(addConsAC(formData))
+      },
+    delonestiker: (id)=>{
+      dispatch(delonestikerAC(id))
     },
-  delonestiker: (id)=>{
-    dispatch(delonestikerAC(id))
-  },
-  dublecard: (id)=>{
-    dispatch(dublecardAC(id))
-  }
+    dublecard: (id)=>{
+      dispatch(dublecardAC(id))
+    }
   }
 }
 const StikersContainer = connect (

@@ -7,17 +7,48 @@ const styleddiv={
   color:'cyan',
   textShadow: '1px 1px  black'
 }
-const FileList = (props) => {
+const FileList = ({droppedFiles ,takeFile, addFile,addPSFile, files}) => {
   let dropped = {}
-    if (props.droppedFiles.taked === true ){
-      let path = props.droppedFiles.droppedFiles[0].path
-      let filename = props.droppedFiles.droppedFiles[0].name
-      let fileExtension = props.droppedFiles.droppedFiles[0].type
+  let droppedSupplying = {}
+  const regStore = new RegExp(/store/i)
+    if (droppedFiles.taked === true ){
+      let path = droppedFiles.droppedFiles[0].path
+      let filename = droppedFiles.droppedFiles[0].name
+      let fileExtension = droppedFiles.droppedFiles[0].type
       if(fileExtension !== "application/vnd.ms-excel" && fileExtension !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ){
         return(
           alert("Не верный тип файла, используйте xlsx или xls"),
           <div style={styleddiv}>Нет подкинутых файлов</div>)
-      }
+      }   
+      if(regStore.test(filename) === true){
+        droppedSupplying  = excelToJson({
+          sourceFile: path,
+          header: {rows: 1},
+          sheets:[{
+            name: 'store',
+            columnToKey: {
+              A: 'id',
+              B: 'article',
+              C: 'discription',
+              D: 'quantity',
+              E: 'quantitypoint',
+              F: 'consignment',
+              G: 'storageplace',
+              H: 'cost',
+              I: 'exchange',
+              J: 'USD',
+              K: 'EUR',
+              L: 'request',
+              M: 'posbid',
+              N: 'invoice',
+            }
+          }]
+        })
+        dropped.fileName = filename;
+        takeFile(filename);
+        droppedFiles.taked = false;
+        addPSFile(droppedSupplying);
+      } else if(regStore.test(filename) === false) {
         dropped  = excelToJson({
           sourceFile: path,
           header: {rows: 1},
@@ -29,13 +60,13 @@ const FileList = (props) => {
             G: 'storageplace',
             L: 'customer'}
             })
-    dropped.fileName = filename;
-    props.takeFile(filename);
-    props.droppedFiles.taked = false;
-    props.addFile(dropped);
-
+      dropped.fileName = filename;
+      takeFile(filename);
+      droppedFiles.taked = false;
+      addFile(dropped);
+      }
   }
-    return props.files.length === 0 ? (
+    return files.length === 0 ? (
       <div style={styleddiv}>Нет подкинутых файлов</div>
     ) : (
         <div>

@@ -1,23 +1,19 @@
 import React,{useState}   from 'react';
+import fs  from 'fs'
 import cl from './Customer.module.css'
 import RecyclingBin from './components/RecyclingBin'
 import SourceBox from './components/SourceBox'
 import ConsumerField from './components/ConsumerField'
-import  Navbar from './../util/Navbar/Navbar.jsx'
+import  Navbar from '../../util/Navbar/Navbar.jsx'
 import FindSelect from './components/FindSelect'
 import {MdGroupAdd,MdSave} from 'react-icons/md'
 import {AiOutlineSortAscending,AiOutlineSearch} from 'react-icons/ai'
+import { consumerdir } from './../../core'
 
-
-
-const fs = require('fs');
-const path = require('path')
-
-const consdir = path.join(require('electron').remote.app.getAppPath(), '../', '/Consumer')
 
 
 const savetodb =(customer)=>{
-  fs.writeFile(`${consdir}/Consumer.json`,
+  fs.writeFile(`${consumerdir}/Consumer.json`,
     JSON.stringify(customer, null, 2), (err) => {
     if (err) throw err;
       alert('Все ходы записаны')
@@ -101,7 +97,7 @@ const Consumer = (props) => {
         <span style={{width:'100%'}}>
         <FindSelect
           customer = {props.customer}
-          addSortConsumer = {props.addSortConsumer}/>
+          changeFunction = {props.addSortConsumer}/>
         </span>
        </div>
      </div>

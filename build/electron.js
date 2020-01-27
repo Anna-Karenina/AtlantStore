@@ -43,6 +43,16 @@ const createWindow = () => {
       Menu.setApplicationMenu(menu);
 
   mainWindow.on('closed', () => mainWindow = null);
+//новое протестить и если не так убрать
+  mainWindow.on('minimize',  (event)=>{
+    event.preventDefault()
+    mainWindow.hide()
+  })
+  mainWindow.on('close',  (event) => {
+    event.preventDefault();
+    mainWindow.hide();
+});
+//---------------------------------------
 }
 
 app.on('ready', ()=>{
@@ -52,6 +62,7 @@ app.on('ready', ()=>{
   const IconPath = path.join(__dirname, `/icons/${IconName}`)
   tray = new AppTray(IconPath, mainWindow)
 });
+
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

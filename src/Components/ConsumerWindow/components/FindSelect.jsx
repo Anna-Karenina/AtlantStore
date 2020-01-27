@@ -9,7 +9,7 @@ let  handleChange = (newValue, actionMeta) => {
     console.log(newValue);
     console.log(`action: ${actionMeta.action}`);
     console.groupEnd();
-    props.addSortConsumer(newValue, customers)
+    props.changeFunction(newValue, customers)
   };
 let  handleInputChange = (inputValue, actionMeta) => {
     console.group('Input Changed');

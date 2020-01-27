@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CustomerListRedux from './../util/customerlist/CustomerList';
+import CustomerListRedux from '../../util/customerlist/CustomerList';
 import cl from './Stikers.module.css';
 import ReactToPrint from 'react-to-print';
 import OneStiker from './OneStiker';
-import  Navbar from './../util/Navbar/Navbar.jsx'
+import  Navbar from '../../util/Navbar/Navbar.jsx'
 
 class Stikers extends React.Component {
   constructor(props){

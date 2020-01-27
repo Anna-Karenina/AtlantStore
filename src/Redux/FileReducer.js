@@ -1,20 +1,13 @@
 const ADD_FILE = 'ADD_FILE';
 const DELETE_ALL_FILES = 'DELETE_ALL_FILES';
-const ADD_CONSUMER_IN_CARD = 'ADD_CONSUMER_IN_CARD';
 const TAKE_FILE_NAME = 'TAKE_FILE_NAME';
 const DELETE_ONE_STIKER = 'DELETE_ONE_STIKER';
 const DUBLE_ONE_STIKER = 'DUBLE_ONE_STIKER';
-const FROM_JSON_TO_STATE = 'FROM_JSON_TO_STATE';
-const FROM_HANDENTRY_CONS_TO_STATE = "FROM_HANDENTRY_CONS_TO_STATE"
-const CONSUMER_DELITE = 'CONSUMER_DELITE'
-const CUSTOM_CARD_ADD = 'CUSTOM_CONSUMER_ADD'
-const SORT_CONSUMER_FROM_FIND = 'SORT_CONSUMER_FROM_FIND'
-const SORT_CONSUMER_BY_NAME = 'SORT_CONSUMER_BY_NAME'
-const SORT_CONSUMER_BY_POSITION = 'SORT_CONSUMER_BY_POSITION'
+const CUSTOM_CARD_ADD = 'CUSTOM_CARD_ADD'
+const ADD_CONSUMER_IN_CARD = 'ADD_CONSUMER_IN_CARD';
 
 let initState = {
   files : [],
-  customer: [],
   fileNames:[],
 }
 const fileReducer = (state = initState, action) =>{
@@ -29,11 +22,23 @@ const fileReducer = (state = initState, action) =>{
       }
     }
     case DELETE_ALL_FILES : {
-
     return {
       ...state,
       files : [],
       fileNames: []
+      }
+    }
+    case CUSTOM_CARD_ADD :{
+      let value = action.value
+      return{
+        ...state,
+      files: [...state.files, value]
+      }
+    }
+    case TAKE_FILE_NAME :{
+      return{
+        ...state,
+        fileNames : [action.fileName]
       }
     }
     case ADD_CONSUMER_IN_CARD :{
@@ -52,13 +57,6 @@ const fileReducer = (state = initState, action) =>{
         return u;
       })
     }}
-    }
-
-    case TAKE_FILE_NAME :{
-      return{
-        ...state,
-        fileNames : [action.fileName]
-      }
     }
     case DELETE_ONE_STIKER :{
       let stikerid = action.stikerid
@@ -79,93 +77,17 @@ const fileReducer = (state = initState, action) =>{
       }
     }
 
-    case FROM_JSON_TO_STATE:{
-      let filearr = Object.values(action.file)
-      return{
-        ...state,
-        customer:[...state.customer, ...filearr]
-      }
-    }
-
-    case FROM_HANDENTRY_CONS_TO_STATE:{
-      let values = action.values
-      let oldvalues ={...state.customer.find(item => item.id === values.id)}
-      if(values.id === oldvalues.id){
-        values.id = (parseInt(values.id)+1).toString()
-      }
-      return{
-        ...state,
-      customer:[...state.customer, values]
-      }
-    }
-
-    case CONSUMER_DELITE :{
-      let item = action.items.id
-      let delitem = state.customer.find(delitem => delitem.id === item);
-        if(delitem === undefined){
-            return {...state}
-            }
-      return{
-        ...state,
-        customer:  state.customer.filter(i => i.id !== delitem.id)
-        }
-      }
-
-    case CUSTOM_CARD_ADD :{
-      let value = action.value
-      return{
-        ...state,
-      files: [...state.files, value]
-      }
-    }
-    case SORT_CONSUMER_FROM_FIND :{
-      let value = action.newValue
-      let oldcustomers = action.customers
-      if(action.newValue === null){
-        return {
-        ...state,
-        customer: oldcustomers
-        }
-      }
-      return{
-        ...state,
-      customer: [ value]
-      }
-    }
-
-    case SORT_CONSUMER_BY_NAME :{
-      let value = action.customer
-      return{
-        ...state,
-      customer: [...value]
-      }
-    }
-    case SORT_CONSUMER_BY_POSITION :{
-      let value = action.cards
-console.log(value)
-      return{
-        ...state,
-      customer: [...value]
-      }
-    }
-
     default :
        return state;
     }
 }
 export const newFileAC = (dropped) => ({ type:ADD_FILE , newFile: dropped })
 export const deleteAllFilesAC = (all) => ({ type:DELETE_ALL_FILES, all })
-export const addConsAC = (customer) => ({ type:ADD_CONSUMER_IN_CARD, customer})
 export const takeFileNameAC = (fileName) => ({ type:TAKE_FILE_NAME, fileName})
+export const addConsAC = (customer) => ({ type:ADD_CONSUMER_IN_CARD, customer})
 export const delonestikerAC = (id) => ({ type:DELETE_ONE_STIKER, stikerid : id})
 export const dublecardAC = (id) => ({ type:DUBLE_ONE_STIKER, stikerid : id})
-export const fromFileConsumerAc = (file) => ({ type:FROM_JSON_TO_STATE, file})
-export const fromConsFieldToStateAc = (values) => ({ type:FROM_HANDENTRY_CONS_TO_STATE, values})
-export const consumerDelAc = (items) => ({ type:CONSUMER_DELITE, items})
-export const customCardAc = (value) => ({ type:CUSTOM_CARD_ADD, value})
-export const addSortConsumerAc = (newValue, customers) => ({ type:SORT_CONSUMER_FROM_FIND, newValue ,customers })
-export const addSortByNameConsumerAc = (customer, ) => ({ type:SORT_CONSUMER_BY_NAME, customer})
 
-export const addSortByPositionConsumerAc = (cards) => ({ type:SORT_CONSUMER_BY_POSITION, cards})
+export const customCardAc = (value) => ({ type:CUSTOM_CARD_ADD, value})
 
 export default fileReducer;

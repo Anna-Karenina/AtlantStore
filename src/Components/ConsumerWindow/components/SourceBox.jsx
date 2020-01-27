@@ -28,8 +28,10 @@ useEffect( () => {
   }
 
 useInterval( () => {
-  props.sortposConstodis(cards)
-  console.log('im here')
+  if(cards !== props.customer){
+    props.sortposConstodis(cards)
+    console.log('im here')
+  }
 }, delay);
 
 console.log(cards)

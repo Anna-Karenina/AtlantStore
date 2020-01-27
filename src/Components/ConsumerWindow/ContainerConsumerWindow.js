@@ -6,7 +6,7 @@ import {
   addSortByPositionConsumerAc,
   fromConsFieldToStateAc,
   consumerDelAc
-        } from './../../Redux/FileReducer'
+        } from './../../Redux/ConsumerReducer'
 
 const mapDispatchToProps = (dispatch) =>{
   return{
@@ -29,6 +29,6 @@ const mapDispatchToProps = (dispatch) =>{
 }
 
 const ContainerConsumerWindow = connect( state => ({
-  customer: state.fileReducer.customer
+  customer: state.customerReducer.customer
 }), mapDispatchToProps)(Consumer)
 export default  ContainerConsumerWindow 

@@ -1,28 +1,27 @@
 import './coreStyle.css';
+import fs  from 'fs'
 import React from 'react';
-import {fromFileConsumerAc} from './Redux/FileReducer'
+import {fromFileConsumerAc} from './Redux/ConsumerReducer'
 import { connect } from 'react-redux';
 import  InterfaceWindow from './Components/InterfaceWindow/InterfaceWindow.jsx';
-const fs = require('fs');
-const path = require('path')
+import { consumerdir } from './core'
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const consdir = path.join(require('electron').remote.app.getAppPath(), '../', '/Consumer')
-
-class App extends React.Component {
-constructor(props){
-  super(props)
-   let file = JSON.parse(fs.readFileSync(`${consdir}/Consumer.json` , function(err, data){
-     if(err){console.error(err)}
+const App = ({ customer, addConsumerFileToState })=> {
+   let file = JSON.parse(
+    fs.readFileSync(`${consumerdir}/Consumer.json` , (err, data)=>{
+     if(err){ alert(err) }
       else {
        console.log(data);
       }
-     }))
-    if(!this.props.customer.length ){
-    this.props.addNewConsumertoStatedis(file);
+     })
+    )
+    if(customer.length === 0 ){
+     addConsumerFileToState(file);
+    console.log('shit Happines')
     }
-}
-  render(){
+
     return (
         <div className="App">
             <div className="wrapper">
@@ -30,19 +29,19 @@ constructor(props){
             </div>
         </div>
     )
-  }
+
 }
 
 const mapStateToProps = (state) =>{
   return{
-        customer: state.fileReducer.customer
+        customer: state.customerReducer.customer
         }
   }
 const mapDispatchToProps = (dispatch) =>{
   return{
-    addNewConsumertoStatedis: (file)=>{
+    addConsumerFileToState: (file)=>{
       dispatch(fromFileConsumerAc(file))
     }
   }
 }
-export default App = connect (mapStateToProps ,mapDispatchToProps )(App)
+export default  connect (mapStateToProps ,mapDispatchToProps )(App)
