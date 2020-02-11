@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { PostStorageWindow} from './PostStorageWindow'
 import { newOutPSFileAC } from './../../Redux/PostStorageReducer'
 import update from 'immutability-helper'; 
+import {savetofile} from './../../core'
 
 const ContainerPostStorageWindow = ({filesSupplying,outFilesSupplying,addOPSFile } ) =>{
   const getArticle =  (array, search ) => {
@@ -25,6 +26,7 @@ const ContainerPostStorageWindow = ({filesSupplying,outFilesSupplying,addOPSFile
     filesSupplying={filesSupplying} 
     outFilesSupplying={outFilesSupplying}
     addOPSFile={addOPSFile}
+    savetofile={savetofile}
   />)
 }
 const mapStateToProps = (state) =>{
@@ -40,5 +42,5 @@ const mapDispatchToProps = (dispatch) =>{
     },
   }
 }
-export default connect (mapStateToProps, mapDispatchToProps)(ContainerPostStorageWindow);
+export default connect(mapStateToProps, mapDispatchToProps)(ContainerPostStorageWindow);
 

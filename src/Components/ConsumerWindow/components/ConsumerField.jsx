@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form'
+import { Button } from 'react-bootstrap';
 
 
 const  validate = values => {
@@ -19,7 +20,6 @@ let ConsumerField = ({
   customer,
   valid, 
   reset })=> {
-console.log(valid)
  const submittostate =  (values) =>{
     values = {
       id: (customer.length+1).toString(),
@@ -35,10 +35,11 @@ console.log(valid)
     component="input" 
     type="text"
     placeholder='Ввидите название поставщика'/>
-   <button 
+   <Button 
+   variant="outline-secondary"
     type='submit'>
       Добавить
-  </button>
+  </Button>
   </form>
 )}
 

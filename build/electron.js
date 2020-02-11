@@ -1,9 +1,12 @@
-const {app,BrowserWindow,Menu,ipc } = require('electron')
+const {app,BrowserWindow,Menu,ipcMain } = require('electron')
 const path = require('path');
 const AppTray = require('./app/AppTray')
 const isDev = require('electron-is-dev');
+const IconName = process.platform === 'win32' ? 'icon.png' : 'vwicon.png'
+const IconPath = path.join(__dirname, `/icons/${IconName}`)
 
 let tray;
+let TrayWindow 
 let mainWindow;
 
 const createWindow = () => {
@@ -12,7 +15,7 @@ const createWindow = () => {
     height: 680, 
     resizable: false,
     show:false,
-    webPreferences : {webSecurity: false, nativeWindowOpen: true} });
+    webPreferences : {webSecurity: false, nativeWindowOpen: true, nodeIntegration: true} });
 
   mainWindow.loadURL(isDev ?
    'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
@@ -51,16 +54,17 @@ const createWindow = () => {
   mainWindow.on('close',  (event) => {
     event.preventDefault();
     mainWindow.hide();
-});
-//---------------------------------------
+  });
+}
+
+function initTray(){
+  TrayWindow = require('./app/createstikerWindow')
+  tray = new AppTray(IconPath, mainWindow, TrayWindow)
 }
 
 app.on('ready', ()=>{
   createWindow();
-
-  const IconName = process.platform === 'win32' ? 'icon.png' : 'vwicon.png'
-  const IconPath = path.join(__dirname, `/icons/${IconName}`)
-  tray = new AppTray(IconPath, mainWindow)
+  initTray();
 });
 
 
@@ -75,3 +79,16 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+
+ipcMain.on('take-data', (event, arg) => {
+  mainWindow.webContents.send('action-update', arg);
+});
+
+ipcMain.on('open-print', (event, arg) => {
+  mainWindow.show()
+});
+
+ipcMain.on('take-data-done', (event, arg) => {
+  TrayWindow.webContents.send('done', arg);
+})

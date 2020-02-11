@@ -1,11 +1,12 @@
 import React,{ useState, useRef, useEffect} from 'react';
 import  Navbar from './../../util/Navbar/Navbar.jsx'
 import BarcodeReader from 'react-barcode-reader'
-import styled from './PostStorageWindow.module.css'
+import styled from './PostStorageWindow.module.scss'
 import EditRequestAlert from './EditRequestAlert'
 import {ScannedModal} from './ScannedModal'
+import { Button } from 'react-bootstrap';
 
-export const PostStorageWindow  = ({filesSupplying,getArticle, updateStateArticle,addOPSFile,outFilesSupplying}) => {
+export const PostStorageWindow  = ({filesSupplying,getArticle, updateStateArticle,addOPSFile,outFilesSupplying, savetofile}) => {
   const [result , setresult] = useState('')
   const [localFilesSupplying , setLocalfilesSupplying] = useState(filesSupplying)
 
@@ -45,21 +46,30 @@ export const PostStorageWindow  = ({filesSupplying,getArticle, updateStateArticl
   return (
     <>
     <Navbar />
+    <ScannedModal 
+      className={styled} 
+      outFilesSupplying={outFilesSupplying}/>
     <div className={styled.container}>
-    <ScannedModal outFilesSupplying={outFilesSupplying}/>
       {
         filesSupplying.find(i=> i.needFulfilled === true)  ?
         <EditRequestAlert showStatus = {true}/>
         : null
       }
-    <div>
+ 
+      <Button className={styled.button}
+        onClick={()=>savetofile(outFilesSupplying)}>
+           сохранить в файл
+        </Button>
+      <div className={styled.articleListcontainer}>
+
+      <div className = {styled.header}>
     
 
     <BarcodeReader
           onError={handleError}
           onScan={handleScan}//
           />
-        <h3>Отсканируйте код</h3>
+        <span>Отсканируйте баркод</span>
         <p>{result}</p>
 
       <input 
@@ -69,10 +79,8 @@ export const PostStorageWindow  = ({filesSupplying,getArticle, updateStateArticl
       onChange={setInput}///убрать для сканнера
       onKeyDown ={findinArticeInstore}/>
 
-
       </div>
-      <div className={styled.articleList}>
-        <ul>
+        <ul className={styled.articleList}>
           {
             localFilesSupplying.map(item => 
             <ol 

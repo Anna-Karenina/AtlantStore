@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Buttonwcc from './button/Buttonwcc'
 import CustomStiker from '../CustomStikerModal/CustomStikerModal'
 import {MdDeleteForever, MdSupervisorAccount} from 'react-icons/md'
 import { FaBoxOpen} from 'react-icons/fa'
 import { TiHome } from 'react-icons/ti'
 import { connect } from 'react-redux';
-import { deleteAllFilesAC } from '../../Redux/FileReducer'
+import { deleteAllFilesAC, customCardAc } from '../../Redux/FileReducer'
+import { psdeleteAllFilesAC } from '../../Redux/PostStorageReducer'
+import { ipcRenderer } from 'electron'
 
 const navstyle={
     backgroundColor: 'rgba(129,129,129, 0.7)',
@@ -35,7 +37,20 @@ const iconstyle={
 //   boxShadow: '2px, 2px, 7px, black'
 // }
 
-const Navbar = (props) => {
+const Navbar = ({deleteAllFiles, checkfromtrey}) => {
+  let history = useHistory();
+
+  ipcRenderer.on('action-update', (event, arg) => {
+    checkfromtrey(arg)
+    history.push("/Stikers");
+    ipcRenderer.send('take-data-done');
+  });
+
+  const ClearAll = () =>{
+    if(window.confirm('Вы точно хотите очистить добавленные файлы?')){
+      deleteAllFiles()
+    }else alert('Отменено!')
+  }
  return(
   <div style={navstyle}>
     <ul style = {ulstyle}>
@@ -65,7 +80,7 @@ const Navbar = (props) => {
             <CustomStiker />
         </li>
         <li
-          onClick={()=>props.deleteAllFiles()} >
+          onClick={()=>ClearAll()} >
         <Buttonwcc
           title={"Очистить"}
             child = {
@@ -92,11 +107,17 @@ const Navbar = (props) => {
   </div>
   )
 }
+
 const mapDispatchToProps = (dispatch) =>{
   return{
     deleteAllFiles:()=>{
       dispatch(deleteAllFilesAC())
+      dispatch(psdeleteAllFilesAC())
     },
+    checkfromtrey:(value)=>{
+      value.id = 'id' + (new Date()).getTime();
+      dispatch(customCardAc(value))
+    }
   }
 }
 export default connect (null,mapDispatchToProps )(Navbar)

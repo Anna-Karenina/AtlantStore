@@ -35,7 +35,7 @@ let ReduxFormSelect = props => {
       onChange={value => input.onChange(value)}
       onBlur={() => input.onBlur(input.value)}
       options={options}
-      placeholder={'Выбрать поставщика:'}
+      placeholder={'Поставщик:'}
     />
   )
 }

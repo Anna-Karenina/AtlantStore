@@ -5,6 +5,7 @@ const DELETE_ONE_STIKER = 'DELETE_ONE_STIKER';
 const DUBLE_ONE_STIKER = 'DUBLE_ONE_STIKER';
 const CUSTOM_CARD_ADD = 'CUSTOM_CARD_ADD'
 const ADD_CONSUMER_IN_CARD = 'ADD_CONSUMER_IN_CARD';
+const FROM_STORAGE_PLACE_TO_STIKER ='FROM_STORAGE_PLACE_TO_STIKER'
 
 let initState = {
   files : [],
@@ -33,6 +34,13 @@ const fileReducer = (state = initState, action) =>{
       return{
         ...state,
       files: [...state.files, value]
+      }
+    }
+    case FROM_STORAGE_PLACE_TO_STIKER:{
+      let value = action.value
+      return{
+        ...state,
+      files: [...state.files, ...value]
       }
     }
     case TAKE_FILE_NAME :{
@@ -89,5 +97,6 @@ export const delonestikerAC = (id) => ({ type:DELETE_ONE_STIKER, stikerid : id})
 export const dublecardAC = (id) => ({ type:DUBLE_ONE_STIKER, stikerid : id})
 
 export const customCardAc = (value) => ({ type:CUSTOM_CARD_ADD, value})
+export const fromStoragePlace = (value) => ({ type:FROM_STORAGE_PLACE_TO_STIKER, value})
 
 export default fileReducer;

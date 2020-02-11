@@ -14,7 +14,10 @@
   display: flex;
   align-items: center;
 }
-
+.activelink{
+  box-shadow: 0 0 40px 40px rgb(70, 151, 255) inset;
+  background-color: red;
+}
 .btn:hover, .btn:focus {
   color: #fff;
   outline: 0;

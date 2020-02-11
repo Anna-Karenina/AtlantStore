@@ -22,6 +22,7 @@ const discr = {
   marginBottom: '40px',
   color: '#fff',
 }
+
 const InterfaceWindow = (props) =>{
   const [droppedFiles, setDroppedFiles] = useState([])
   const accepts = useMemo(() => [FILE], [])
@@ -37,7 +38,6 @@ const InterfaceWindow = (props) =>{
   return (
       <div style={mainScreen}>
         <Navbar />
-
         <div style={discr}>
           <DragFileContainer />
           <p>Загрузите excel перетащив нужные файлы в выделенную область</p>
@@ -45,6 +45,7 @@ const InterfaceWindow = (props) =>{
           <TargetBox accepts={accepts} onDrop={handleFileDrop} />
           <FileListContainer  droppedFiles = {takeDrop} />
       </div>
+      
   );
 }
 

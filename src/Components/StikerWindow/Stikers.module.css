@@ -102,12 +102,12 @@ text-align:  center;
 .article h6 {
   padding: 0;
   margin: 0;
-  font-style: italic;
   font-weight: 300;
 }
-.article h2 {
+.article h3 {
   padding: 0;
   margin: 0;
+  font-weight: bold;
 }
 .quantity{
   border-left: 1px solid #333;
@@ -118,10 +118,11 @@ text-align: center;
 max-width: 65px;
 
 }
-.quantity h6{
+.quantity span{
   padding: 0;
   margin: 0;
-  font-style: italic;
+  font-size: 12px;
+  
   font-weight: 300;
 }
 .quantity h3{
@@ -139,7 +140,6 @@ max-width: 65px;
   border-bottom: 1px solid #333;
 }
 .storageplace h6{
-  font-style: italic;
    font-weight: 300;
    font-size: 16px;
    margin: 0;
@@ -149,11 +149,14 @@ max-width: 65px;
   border-left: 1px solid #333;
   padding: 0  15px;
 }
+.place h3 {
+  margin-top: 10px;
+  font-weight: bold;
+}
 .customer{
     border-bottom: 1px solid #333;
 }
 .customer h6{
-    font-style: italic;
     font-weight: 300;
     font-size: 16px;
     margin: 0;
@@ -161,6 +164,7 @@ max-width: 65px;
 }
 .time{
   display: flex;
+  min-width: 250px;
   flex-direction: row;
 }
 .time h6{
@@ -192,7 +196,7 @@ max-width: 65px;
   height: 30px;
 }
 .comment{
-  font-style: italic;
+  
   font-weight: 300
 }
 .quantityedit{

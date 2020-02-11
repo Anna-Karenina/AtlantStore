@@ -42,33 +42,48 @@ class OneStiker extends React.Component {
       <div className = {cl.oneStiker}>
         <div className={cl.editStiker}>
           <div className = {cl.editModeSwitcher}>
-            <label htmlFor='enterEditMode'> Редактирование</label>
+            <label htmlFor='enterEditMode'>Редактирование </label>
             <Field name={`${this.props.id}idfield`}
               component="input"
               type="checkbox"
               checked = {this.state.hasEditModeValue}
               onChange={this.handleInputChange}/>
           </div>
-            {this.state.hasEditModeValue &&
+            {
+            this.state.hasEditModeValue &&
             <div className={cl.editbutton}>
-              <button onClick = {dubleCard}>Дублировать </button>
-              <button onClick = {delOneStiker}>Удалить </button>
-            </div>}
+              <button onClick = {dubleCard}>
+                Дублировать 
+              </button>
+              <button onClick = {delOneStiker}>
+                Удалить 
+              </button>
+            </div>
+            }
+        </div>
+        <div className = {cl.stikercontainer} >
+          <div className={cl.barcode}>
+           <div className={cl.bar}>
+            <Barcode 
+              height={45} 
+              width={1.6} 
+              background='#fff' 
+              displayValue = {false} 
+              value={this.props.article} />
+           </div>
           </div>
-          <div className = {cl.stikercontainer} >
-            <div className={cl.barcode}>
-              <div className={cl.bar}>
-                <Barcode height={45} width={1.6} background='#fff' displayValue = {false} value={this.props.article} /></div>
+           <div className={cl.mainstiker}><br/>
+            <div className={cl.author}>
+              Автор : {username}
+            </div>
+            <div className={cl.articlerow}>
+              <div className={cl.article}>
+               <h6>Артикул:</h6>
+                <h3>{this.props.article}</h3>
               </div>
-              <div className={cl.mainstiker}><br/>
-                <div className={cl.author}>Автор : {username}</div>
-                <div className={cl.articlerow}>
-                  <div className={cl.article}>
-                  <h6>Артикул:</h6>
-                  <h2>{this.props.article}</h2></div>
-                  <div className={cl.quantity}>
-                    <h6>Количество:</h6>
-                    {this.state.hasEditModeValue &&
+              <div className={cl.quantity}>
+                <span>Количество:</span>
+                 {this.state.hasEditModeValue &&
                     <>
 
                     <Field name={`${this.props.id}quantity`}

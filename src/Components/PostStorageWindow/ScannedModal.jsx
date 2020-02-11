@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Alert from 'react-bootstrap/Alert'
-
+import { Table } from 'react-bootstrap';
 
 export const ScannedModal  = ({outFilesSupplying}) => {
   const [variant, setVariant] = React.useState('success')
@@ -28,21 +28,26 @@ export const ScannedModal  = ({outFilesSupplying}) => {
       variant= {variant}
       show={show}
       style ={{marginTop: '43px', width:'100%'}}> 
-      <span>
-      Артикул:
-      </span>
-      <span>
-        {lastAddPart.article}
-      </span>
-      <p>
-        Принят на склад по месту:{lastAddPart.storageplace }
-      </p>
-      <p>
-        Для запроса:{lastAddPart === undefined ? 'без запроса' : lastAddPart.request}
-      </p>
-      <p>
-        Описание:{lastAddPart.discription}
-      </p>
+      <Table striped bordered hover>
+      <thead>
+       <tr>
+        <th>Артикул</th>
+        <th>Кол-во</th>
+        <th>Место</th>
+        <th>Описание</th>
+        <th>Запрос</th>
+       </tr>
+       </thead>
+       <tbody>
+        <tr>
+          <td>{lastAddPart.article}</td>
+          <td>{lastAddPart.quantity }</td>
+          <td>{lastAddPart.storageplace }</td>
+          <td>{lastAddPart.discription}</td>
+          <td>@{lastAddPart.request === undefined ? 'без запроса' : lastAddPart.request}</td>
+        </tr>
+        </tbody>
+      </Table>
     </Alert>
     }
     </>

@@ -20,7 +20,7 @@ const DragFile = ({filesNames}) =>{
         <div className={cl.filename}>{filesNames}</div>
         </div>
       </Link>
-      :
+    :
       <Link to= "/Stikers">
         <div className={cl.dragcont}>
           <div className={cl.svgCont}>

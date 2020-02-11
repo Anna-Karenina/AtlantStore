@@ -8,7 +8,7 @@ import cl from './../Navbar/button/Buttonwcc.module.css'
 import {customCardAc} from '../../Redux/FileReducer'
 import { MdChat} from 'react-icons/md'
 import {validate, RenderField} from './Validation'
-const { ipcRenderer } = require('electron')
+import { Card, ListGroupItem, ListGroup, Button } from 'react-bootstrap';
 
 Modal.setAppElement('#root')
 
@@ -24,12 +24,7 @@ class CustomStikerModal extends React.PureComponent {
      this.handleOpenModal = this.handleOpenModal.bind(this);
      this.handleCloseModal = this.handleCloseModal.bind(this);
   }
-  componentDidMount(){  
-    ipcRenderer.send('modalready', 'ready')
-    ipcRenderer.on('click', (event, arg) => {
-      console.log(arg) 
-    })
-  }
+
 
   componentDidUpdate(prevState){
       if(this.props.files !== prevState.files){
@@ -78,38 +73,39 @@ class CustomStikerModal extends React.PureComponent {
                     bottom: 'auto',
                     marginRight: '-50%',
                     transform: 'translate(-50%, -50%)',
-                    width: '250px',
+                    width: '350px',
                     borderRadius: '2rem',
                     textAlign: 'center',
                 }
               }}>
-            <i>Создание стикера</i>
-    <form onSubmit={this.props.handleSubmit(this.submit)} className={cl.form}>
-      <div>
-        <div className={cl.fieldswrap}>
-          <Field
-            className={cl.fields}
+      <Card border='none '>
+  <form onSubmit={this.props.handleSubmit(this.submit)} >
+  <Card.Body>
+    <Card.Title>Создание стикера</Card.Title>
+    <Card.Text style={{fontSize: '12px', lineHeight: '11px'}}>
+      В этом окне можно создать не зависимые наклейки и распечать их
+    </Card.Text>
+  </Card.Body>
+  <ListGroup className="list-group-flush">
+    <ListGroupItem>
+    <Field
             name="article"
             component={RenderField}
             type="text"
             label="Артикул"
           />
-        </div>
-      </div>
-      <div>
-        <div className={cl.fieldswrap}>
-          <Field
+    </ListGroupItem>
+    <ListGroupItem>
+    <Field
             className={cl.fields}
             name="name"
             component={RenderField}
             type="text"
             label={'Наименование'}
           />
-        </div>
-      </div>
-      <div>
-        <div style={{display: 'flex'}}>
-          <Field
+    </ListGroupItem>
+    <ListGroupItem style ={{display: 'flex'}}>          
+      <Field
             className={cl.minifields}
             name="storageplace"
             component={RenderField}
@@ -122,30 +118,35 @@ class CustomStikerModal extends React.PureComponent {
             component={RenderField}
             type="number"
             label="Кол-во"
-          />
-        </div>
-        </div>
-        {!!this.props.valid ? 
-          <div className={cl.buttonstack}>
-            <button 
+          /></ListGroupItem>
+  </ListGroup>
+  {!!this.props.valid ? 
+  <Card.Body style={{display:'flex', justifyContent:'space-between'}}>
+            <Button 
+            variant="outline-secondary"
               type="submit" 
               disabled={!this.props.valid || this.props.submitting} 
             >
                 Сохранить
-            </button>
+            </Button>
             <Link to='Stikers'>
-              <button 
-                onClick = {()=>this.props.reset() }
-                disabled={!this.props.valid}>
-                Печать
-              </button>
-            </Link>
-          </div> :
-          <span className={cl.buttonstack}>
-            {this.props.touched && ((this.props.error && <span>{this.props.error}</span>) )} 
-          </span>
-        }
-    </form>
+                <Button 
+                variant="secondary"
+                  onClick = {()=>this.props.reset() }
+                  disabled={!this.props.valid}>
+                  Печать
+                </Button>
+              </Link>
+  </Card.Body>
+:
+<span className={cl.buttonstack}>
+{this.props.touched && ((this.props.error && <span>{this.props.error}</span>) )} 
+</span>
+  }
+  </form>
+</Card>
+
+ 
     <ul>
         {
         this.state.files === undefined ? null :

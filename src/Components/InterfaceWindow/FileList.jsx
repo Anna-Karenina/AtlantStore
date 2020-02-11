@@ -24,25 +24,17 @@ const FileList = ({droppedFiles ,takeFile, addFile,addPSFile, files}) => {
         droppedSupplying  = excelToJson({
           sourceFile: path,
           header: {rows: 1},
-          sheets:[{
             name: 'store',
             columnToKey: {
-              A: 'id',
-              B: 'article',
-              C: 'discription',
-              D: 'quantity',
-              E: 'quantitypoint',
-              F: 'consignment',
-              G: 'storageplace',
-              H: 'cost',
-              I: 'exchange',
-              J: 'USD',
-              K: 'EUR',
-              L: 'request',
-              M: 'posbid',
-              N: 'invoice',
+              A: 'article',
+              B: 'discription',
+              C: 'quantity',
+              D: 'request',
+              E: 'storageplace',
+              F: 'secstorageplace',
+              G: 'build',
+              H: 'notes',
             }
-          }]
         })
         dropped.fileName = filename;
         takeFile(filename);
