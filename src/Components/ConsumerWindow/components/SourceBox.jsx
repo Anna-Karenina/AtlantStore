@@ -4,7 +4,6 @@ import Card from './Card'
 import update from 'immutability-helper'
 
 const SourceBox = (props) => {
-console.log(props)
   const [cards, setCards] = useState(props.customer)
   const [delay,] = React.useState(5000);
   const moveCard = (id, atIndex) => {

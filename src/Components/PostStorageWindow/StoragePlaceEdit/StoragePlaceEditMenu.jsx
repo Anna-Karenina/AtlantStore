@@ -20,7 +20,6 @@ const {
   customer,requestValue,
   hasNoPlaceValue,outStikers,
   outStikersPath,yourcode} = aprops
-console.log(aprops)
 
   React.useEffect(()=>{
     let x =  filesSupplying.map(i =>{
@@ -31,7 +30,6 @@ console.log(aprops)
           return i.needNewPlace = true
       }else return undefined
     } )
-    console.log(x)
       setOneRequest(unique(x))
   },[filesSupplying])
   

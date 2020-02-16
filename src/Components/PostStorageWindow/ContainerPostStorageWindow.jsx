@@ -6,6 +6,7 @@ import update from 'immutability-helper';
 import {savetofile} from './../../core'
 
 const ContainerPostStorageWindow = ({filesSupplying,outFilesSupplying,addOPSFile } ) =>{
+  
   const getArticle =  (array, search ) => {
     return array.filter(function(item) {
       return Object.keys(item).some(function(key) {

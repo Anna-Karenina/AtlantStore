@@ -19,12 +19,15 @@ export const PostStorageWindow  = ({filesSupplying,getArticle, updateStateArticl
   });//убрать для сканнера
 
   const setInput =(event) =>{
+    console.log(event.target)
     setinputValue(event.target.value)
   }//переделать для сканнера
 
   const findinArticeInstore = async (event) =>{
     if (event.keyCode === 13) {//убрать для сканнера
      let dataArticle = getArticle(localFilesSupplying, inputValue)
+     console.log(dataArticle)
+     console.log(localFilesSupplying)
      if(dataArticle.length === 0){
       return alert('kurwa')
      } else {

@@ -11,7 +11,6 @@ const selector = formValueSelector('selectingRequestStoragePlace')
 
 const StoragePlaceEditMenuC = (props)=>{
   const [copiedtobuffer, setCopiedtobuffer]=React.useState({place: false, cunsumer:false})
-  console.log(props)
 
   function unique(arr) {
     let result = [];
@@ -48,7 +47,6 @@ const StoragePlaceEditMenuC = (props)=>{
     } else console.log('не приминилось')
   }
 const dosmt2 = async (data) =>{
-  console.log(data)
   if(window.confirm(`Для номера ${data.hasNoPlace} выбрано место  <${data.place}>   применить?` )){
     await props.addNewPartStorePlaceToFulesSyp(data)
     await props.addToStikerWindow(data)
@@ -56,6 +54,7 @@ const dosmt2 = async (data) =>{
     setCopiedtobuffer({ place: false})
  } else console.log('не приминилось')
 }
+
 const toprintwindow = async(data) =>{
   await props.addToStikerWindowPath(data)
   console.log('добавленно')

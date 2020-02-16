@@ -13,7 +13,7 @@ class Stikers extends React.Component {
 }
   render(){
     const {handleSubmit} = this.props;
-    const submit = (values) => console.log(values);
+    const submit = (values) => (values);
     let selm = this.props.files.map(p => <OneStiker
       delonestiker ={this.props.delonestiker}
       dublecard ={this.props.dublecard}

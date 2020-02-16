@@ -7,7 +7,6 @@ import { ipcRenderer } from 'electron';
 
 const CustomStikerModal =(props)=> {
   const [dis, setDis] = React.useState(true)
-  console.log(props)
   const {
     values,
     handleChange,
@@ -131,14 +130,14 @@ const CustomModalСontainer =  withFormik({
     errors.quantity = 'Обязательно!'
   } else if (isNaN(Number(values.quantity))) {
     errors.quantity = 'Укажите число!'
-  } else if (values.quantity > 0){
-    errors.quantity = 'число должно быть больше 0'
-  }
+  } 
+  // else if (values.quantity > 0){
+  //   errors.quantity = 'число должно быть больше 0'
+  // }
   return errors
 },
-validateOnMount:true,
+//validateOnMount:true,
     handleSubmit: (values, { setSubmitting }) => {
-        console.log(values);
         ipcRenderer.send('take-data', values);
         setSubmitting(false);
     },

@@ -42,7 +42,6 @@ const PostStorageReducer = (state = initState, action) =>{
         }
       }
     case PS_ADD_IN_OUTFILE:{
-      console.log('что я тту делаю?')
       const oneLinePart = action.payload
       return{
         ...state,
@@ -79,7 +78,6 @@ const PostStorageReducer = (state = initState, action) =>{
       }
     }
     case PS_ADD_TO_STIKER_WINDOW:{
-      console.log(action.payload)
       let newstiker;
       if(action.payload.customer !== undefined){
          newstiker = state.filesSupplying.filter(
@@ -87,10 +85,9 @@ const PostStorageReducer = (state = initState, action) =>{
       }
       if (action.payload.place !== undefined){
          newstiker = state.filesSupplying.filter(
-          i=>i.article === action.payload.hasNoPlace
+          i=> (i.article === action.payload.hasNoPlace)
         )
       }
-        console.log(newstiker )
       return{
         ...state,
         outStikers: [...state.outStikers, 
@@ -101,7 +98,7 @@ const PostStorageReducer = (state = initState, action) =>{
               name:i.discription,
               quantity:i.quantity ,
               customer:i.storageplace ,
-              storageplace : 'box',
+              storageplace : !i.request ? i.storageplace: 'box' , 
               notes: i.request
             }
           })
