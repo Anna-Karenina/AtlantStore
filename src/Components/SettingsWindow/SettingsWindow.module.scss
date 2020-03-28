@@ -1,0 +1,22 @@
+.bgcontainer{
+  background-image: url(../../assets/setBack.jpg);
+  width: 100vw;
+  height: 100vh;
+}
+.container{
+  background-color: rgba($color: #fff, $alpha: .5);
+  width: 100%;
+  height: 100%;
+}
+.optionWrapper{
+  padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+
+}
+.stiker_size_row{
+  display: flex;
+  margin-left: 3vw;
+  width: 40vh;
+  background-color: rgba($color: #fafafa, $alpha: .8)
+}

@@ -25,7 +25,26 @@ let  handleInputChange = (inputValue, actionMeta) => {
         onChange={handleChange}
         onInputChange={handleInputChange}
         options={props.customer}
+        styles={customStyles}
       />
     )
+}
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    borderBottom: '1px dotted pink',
+    color: state.isSelected ? 'red' : '#333',
+    padding: 20,
+  }),
+  control: (provided) => ({
+    ...provided,
+    border: 'none'
+  }),
+  singleValue: (provided, state) => {
+    const opacity = state.isDisabled ? 0.5 : 1;
+    const transition = 'opacity 300ms';
+
+    return { ...provided, opacity, transition };
+  }
 }
 export default  CreatableSingle

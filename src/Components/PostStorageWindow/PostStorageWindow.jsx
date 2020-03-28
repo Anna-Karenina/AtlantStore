@@ -3,16 +3,20 @@ import  Navbar from './../../util/Navbar/Navbar.jsx'
 import BarcodeReader from 'react-barcode-reader'
 import styled from './PostStorageWindow.module.scss'
 import EditRequestAlert from './EditRequestAlert'
-import {ScannedModal} from './ScannedModal'
+import {ScannedModal} from './ModalScaned'
 import { Button } from 'react-bootstrap';
 
 export const PostStorageWindow  = ({filesSupplying,getArticle, updateStateArticle,addOPSFile,outFilesSupplying, savetofile}) => {
   const [result , setresult] = useState('')
   const [localFilesSupplying , setLocalfilesSupplying] = useState(filesSupplying)
-
+  const [disableElm, setDisableElm] = useState(true)
   const [inputValue , setinputValue] = useState('')
   const inputRef = useRef(null);
 
+  useEffect(()=>{
+   if( outFilesSupplying.length > 0) 
+    setDisableElm(false)
+  },[outFilesSupplying.length])
 
   useEffect(() => {
     inputRef.current.focus();
@@ -58,11 +62,19 @@ export const PostStorageWindow  = ({filesSupplying,getArticle, updateStateArticl
         <EditRequestAlert showStatus = {true}/>
         : null
       }
- 
-      <Button className={styled.button}
-        onClick={()=>savetofile(outFilesSupplying)}>
-           сохранить в файл
-        </Button>
+            <p className = {styled.comment}>
+              после сохранения проверьте: <br/> 
+              <li>изменение значения количества товара </li>
+              <li>так-же дублирование и удаление карточек</li>
+            </p>
+            <Button 
+              variant={disableElm ?  "outline-secondary" : 'secondary' }
+              disabled = {disableElm}
+              className={styled.button}
+              onClick={()=>savetofile(outFilesSupplying)}>
+                сохранить в файл
+              </Button>
+        
       <div className={styled.articleListcontainer}>
 
       <div className = {styled.header}>
@@ -81,7 +93,6 @@ export const PostStorageWindow  = ({filesSupplying,getArticle, updateStateArticl
       value = {inputValue}//переделать для сканнера
       onChange={setInput}///убрать для сканнера
       onKeyDown ={findinArticeInstore}/>
-
       </div>
         <ul className={styled.articleList}>
           {

@@ -23,7 +23,7 @@ node_modules/
 dist/
 build/
 /build
-
+.txt
 jspm_packages/
 
 # Typescript v1 declaration files

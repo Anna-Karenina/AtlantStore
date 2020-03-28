@@ -10,13 +10,13 @@ export const ScannedModal  = ({outFilesSupplying}) => {
   useEffect(()=>{
     setLastAddPart(outFilesSupplying[outFilesSupplying.length-1])
     setShow(true)
-  })
+  },[outFilesSupplying])
   
   useEffect(()=>{
     if(!lastAddPart ||  lastAddPart.hasOwnProperty('request') === true){
       setVariant('primary')
     }else return setVariant('success')
-  })
+  },[lastAddPart])
   
   return (
     <>

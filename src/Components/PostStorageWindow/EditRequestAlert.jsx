@@ -2,13 +2,13 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom';
+
 const  EditRequestAlert = ({showStatus}) => {
   const [show, setShow] = React.useState(showStatus);
   const handleClose = () => setShow(false);
-
   return (
     <>
-      <Modal show={show} onHide={handleClose} >
+      <Modal show={show} onHide={handleClose} backdrop="static" >
         <Modal.Header >
           <Modal.Title>В приходе есть запросы</Modal.Title>
         </Modal.Header>

@@ -7,7 +7,7 @@ const styleddiv={
   color:'cyan',
   textShadow: '1px 1px  black'
 }
-const FileList = ({droppedFiles ,takeFile, addFile,addPSFile, files}) => {
+const FileList = ({droppedFiles ,takeFile, addFile,addModificatorsInPSFile, files}) => {
   let dropped = {}
   let droppedSupplying = {}
   const regStore = new RegExp(/store/i)
@@ -39,7 +39,7 @@ const FileList = ({droppedFiles ,takeFile, addFile,addPSFile, files}) => {
         dropped.fileName = filename;
         takeFile(filename);
         droppedFiles.taked = false;
-        addPSFile(droppedSupplying);
+        addModificatorsInPSFile(droppedSupplying);
       } else if(regStore.test(filename) === false) {
         dropped  = excelToJson({
           sourceFile: path,

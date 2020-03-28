@@ -12,40 +12,61 @@ const  validate = values => {
   } else if (values.consumerName.length < 3) {
     errors.consumerName = 'Минимум 3 символа'
   }
+  return errors
 }
 
-let ConsumerField = ({ 
+const ConsumerField = (props)=> {
+const { 
   handleSubmit , 
   submittostatedis, 
   customer,
   valid, 
-  reset })=> {
+  errors,
+  reset } = props
+  console.log(props)
+  
+  const checkfreeId = () =>{
+    let newid  = customer.length+1
+    let checkarr = customer.findIndex(i => i.id === newid) 
+    if(checkarr === -1){
+      console.log('новый айди')
+      return newid
+    }
+    else if(checkarr !== -1){
+      console.log('такой Айди существует')
+     return newid  = customer.length+1
+    } 
+    return Number(newid)
+  }
+  
  const submittostate =  (values) =>{
     values = {
-      id: (customer.length+1).toString(),
+      id: checkfreeId(),
       name:values.consumerName
     }
        submittostatedis(values);
        reset();
   }
  return(
-  <form onSubmit={handleSubmit(submittostate)}>
+   <form onSubmit={handleSubmit(submittostate)}>
+     {console.log(errors)}
+     {console.log(valid)}
    <Field 
     name="consumerName" 
     component="input" 
     type="text"
     placeholder='Ввидите название поставщика'/>
    <Button 
-   variant="outline-secondary"
-    type='submit'>
+    variant={valid ? "secondary"  : "outline-secondary"}
+    type='submit'
+    disabled = {!valid} >
       Добавить
-  </Button>
+   </Button>
   </form>
 )}
 
-ConsumerField = reduxForm({
+
+export default reduxForm({
   form: 'consumerForm',
   validate
 })(ConsumerField)
-
-export default ConsumerField

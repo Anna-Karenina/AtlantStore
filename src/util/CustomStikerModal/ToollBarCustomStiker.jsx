@@ -29,7 +29,7 @@ const CustomStikerModal =(props)=> {
   <Card.Body>
     <Card.Title>Создание стикера</Card.Title>
     <Card.Text style={{fontSize: '12px', lineHeight: '11px'}}>
-      В этом окне можно создать не зависимые наклейки и распечать их
+      В этом окне можно создать независимые наклейки и распечать их
     </Card.Text>
   </Card.Body>
   <ListGroup className="list-group-flush">

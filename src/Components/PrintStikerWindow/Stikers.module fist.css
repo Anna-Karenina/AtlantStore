@@ -1,0 +1,204 @@
+.container{
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+.oneStiker{
+  height: 340px;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(209, 209, 209);
+}
+.editStiker{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-right: 1%;
+  border-bottom: 1px solid #fff;
+  }
+.editStikere{
+  margin: 0;
+  margin-bottom: 1%;
+  padding: 0;
+  margin-left: -31.5% !important;
+  width: 100%;
+  background-color: #fff;
+}
+.editModeSwitcher{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: center;
+  color: buttontext;
+  background-color: buttonface;
+  box-sizing: border-box;
+  padding: 2px 6px 3px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  border-image: initial;
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+  border-style: solid;
+  border-width: 1px;
+  padding: 1px 7px 2px;
+  word-spacing: normal;
+  text-align: start;
+  font: 400 11px system-ui;
+  }
+  .editbutton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+  .editbutton button{
+
+    padding: 5%;
+    border-radius: 10px;
+  }
+  .editbutton button:last-child{
+    margin-top: 40%;
+    background-color: red;
+  }
+.stikercontainer{
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 400px;
+  }
+.barcode{
+  width: 20%;
+  border-right: 1px solid #333;
+  overflow: hidden;
+  }
+.bar{
+  transform: rotate(90deg);
+}
+.mainstiker{
+  width: 80%;
+  display: flex;
+ flex-direction: column;
+}
+.author{
+  padding-top: 3%;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+.articlerow{
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-around;
+}
+.article{
+  display: flex;
+ padding-top: 0;
+ flex-direction: column;
+text-align:  center;
+}
+.article h6 {
+  padding: 0;
+  margin: 0;
+  font-weight: 300;
+}
+.article h3 {
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+}
+.quantity{
+  border-left: 1px solid #333;
+display: flex;
+flex-direction: column;
+justify-content: center;
+text-align: center;
+max-width: 65px;
+
+}
+.quantity span{
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  
+  font-weight: 300;
+}
+.quantity h3{
+  padding: 5px 0;
+  margin: 0;
+}
+.name{
+  text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid #333;
+}
+.storageplace{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #333;
+}
+.storageplace h6{
+   font-weight: 300;
+   font-size: 16px;
+   margin: 0;
+   padding: 22.4px 10px;
+}
+.place{
+  border-left: 1px solid #333;
+  padding: 0  15px;
+}
+.place h3 {
+  margin-top: 10px;
+  font-weight: bold;
+}
+.customer{
+    border-bottom: 1px solid #333;
+}
+.customer h6{
+    font-weight: 300;
+    font-size: 16px;
+    margin: 0;
+    padding: 22.4px 10px;
+}
+.time{
+  display: flex;
+  min-width: 250px;
+  flex-direction: row;
+}
+.time h6{
+ font-size: 15px;
+ margin: 0;
+ padding: 21.9px 10px;
+}
+.windowContainer{
+    margin-top: 6%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.optionMenu{
+   height: inherit;
+   width: 20%;
+ }
+.stickyWrap{
+  position: sticky;
+  top: 10%;
+}
+.btncont{
+  width: 100%;
+  padding: 10px 0;
+}
+.btncont button{
+  border-radius: 6px;
+  width: 100%;
+  height: 30px;
+}
+.comment{
+  
+  font-weight: 300
+}
+.quantityedit{
+  width: 70%;
+}

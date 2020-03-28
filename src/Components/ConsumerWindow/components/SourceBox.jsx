@@ -33,7 +33,6 @@ useInterval( () => {
   }
 }, delay);
 
-console.log(cards)
   return (
       <div style={{
       display: 'flex',

@@ -1,20 +1,11 @@
-const ADD_FILE = 'ADD_FILE';
-const DELETE_ALL_FILES = 'DELETE_ALL_FILES';
-const TAKE_FILE_NAME = 'TAKE_FILE_NAME';
-const DELETE_ONE_STIKER = 'DELETE_ONE_STIKER';
-const DUBLE_ONE_STIKER = 'DUBLE_ONE_STIKER';
-const CUSTOM_CARD_ADD = 'CUSTOM_CARD_ADD'
-const ADD_CONSUMER_IN_CARD = 'ADD_CONSUMER_IN_CARD';
-const FROM_STORAGE_PLACE_TO_STIKER ='FROM_STORAGE_PLACE_TO_STIKER'
+import * as ActionTypes from './ActionsConsts'
 
-let initState = {
+const fileReducer = (state = {
   files : [],
   fileNames:[],
-}
-const fileReducer = (state = initState, action) =>{
+}, action) =>{
   switch(action.type){
-    case ADD_FILE : {
-      //let newFile = action.newFile.sheet
+    case ActionTypes.ADD_FILE : {
         let index =  Object.keys(action.newFile)
         let newFile = action.newFile[index[0]]
     return {
@@ -22,34 +13,34 @@ const fileReducer = (state = initState, action) =>{
       files: [...state.files, ...newFile]
       }
     }
-    case DELETE_ALL_FILES : {
+    case ActionTypes.DELETE_ALL_FILES : {
     return {
       ...state,
       files : [],
       fileNames: []
       }
     }
-    case CUSTOM_CARD_ADD :{
+    case ActionTypes.CUSTOM_CARD_ADD :{
       let value = action.value
       return{
         ...state,
       files: [...state.files, value]
       }
     }
-    case FROM_STORAGE_PLACE_TO_STIKER:{
+    case ActionTypes.FROM_STORAGE_PLACE_TO_STIKER:{
       let value = action.value
       return{
         ...state,
       files: [...state.files, ...value]
       }
     }
-    case TAKE_FILE_NAME :{
+    case ActionTypes.TAKE_FILE_NAME :{
       return{
         ...state,
         fileNames : [action.fileName]
       }
     }
-    case ADD_CONSUMER_IN_CARD :{
+    case ActionTypes.ADD_CONSUMER_IN_CARD :{
       let newCustomer = action.customer.constumer.label
       let value = action.customer.constumer.value
       if(value === 1){
@@ -66,7 +57,7 @@ const fileReducer = (state = initState, action) =>{
       })
     }}
     }
-    case DELETE_ONE_STIKER :{
+    case ActionTypes.DELETE_ONE_STIKER :{
       let stikerid = action.stikerid
       let delcard = state.files.find(delcard => delcard.id === stikerid);
     return{
@@ -76,7 +67,7 @@ const fileReducer = (state = initState, action) =>{
     }
 
 //не совсем правильная копирка!!!!!
-    case DUBLE_ONE_STIKER :{
+    case ActionTypes.DUBLE_ONE_STIKER :{
       let k = {...state.files.find(item => item.id === action.stikerid)}
           k.id = state.files.length+1
     return{
@@ -89,14 +80,38 @@ const fileReducer = (state = initState, action) =>{
        return state;
     }
 }
-export const newFileAC = (dropped) => ({ type:ADD_FILE , newFile: dropped })
-export const deleteAllFilesAC = (all) => ({ type:DELETE_ALL_FILES, all })
-export const takeFileNameAC = (fileName) => ({ type:TAKE_FILE_NAME, fileName})
-export const addConsAC = (customer) => ({ type:ADD_CONSUMER_IN_CARD, customer})
-export const delonestikerAC = (id) => ({ type:DELETE_ONE_STIKER, stikerid : id})
-export const dublecardAC = (id) => ({ type:DUBLE_ONE_STIKER, stikerid : id})
+export const newFileAC = (dropped) => ({ 
+  type:ActionTypes.ADD_FILE, 
+  newFile: dropped 
+})
+export const deleteAllFilesAC = (all) => ({
+   type:ActionTypes.DELETE_ALL_FILES, 
+   all 
+})
+export const takeFileNameAC = (fileName) => ({ 
+  type:ActionTypes.TAKE_FILE_NAME, 
+  fileName
+})
+export const addConsAC = (customer) => ({ 
+  type:ActionTypes.ADD_CONSUMER_IN_CARD, 
+  customer
+})
+export const delonestikerAC = (id) => ({ 
+  type:ActionTypes.DELETE_ONE_STIKER, 
+  stikerid : id
+})
+export const dublecardAC = (id) => ({ 
+  type:ActionTypes.DUBLE_ONE_STIKER, 
+  stikerid : id
+})
 
-export const customCardAc = (value) => ({ type:CUSTOM_CARD_ADD, value})
-export const fromStoragePlace = (value) => ({ type:FROM_STORAGE_PLACE_TO_STIKER, value})
+export const customCardAc = (value) => ({ 
+  type:ActionTypes.CUSTOM_CARD_ADD, 
+  value
+})
+export const fromStoragePlace = (value) => ({ 
+  type:ActionTypes.FROM_STORAGE_PLACE_TO_STIKER, 
+  value
+})
 
 export default fileReducer;

@@ -13,7 +13,7 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 900, 
     height: 680, 
-    resizable: false,
+    //resizable: false,
     show:false,
     webPreferences : {webSecurity: false, nativeWindowOpen: true, nodeIntegration: true} });
 

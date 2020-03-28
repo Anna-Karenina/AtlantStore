@@ -5,6 +5,7 @@ import {reduxForm} from 'redux-form'
 import {addStorePlaceToFulesSypAC,addNewPartStorePlaceToFulesSypAC,addToStikerWindowAC} from './../../../Redux/PostStorageReducer'
 import {fromStoragePlace} from './../../../Redux/FileReducer'
 import { formValueSelector } from 'redux-form'
+import { compose } from 'redux';
 
 
 const selector = formValueSelector('selectingRequestStoragePlace')
@@ -19,7 +20,8 @@ const StoragePlaceEditMenuC = (props)=>{
         result.push(str);
       }
     }
-    return result;
+    let res = result.filter(i => (i !== undefined) && (i !== true ) )
+    return res;
   }
 
   function addClipboard(e,text, id) {
@@ -62,13 +64,13 @@ const toprintwindow = async(data) =>{
 
   return(
     <StoragePlaceEditMenu
-    unique={unique}
-    addClipboard={addClipboard}
-    aprops={props} 
-    dosmt2={dosmt2}
-    dosmt={dosmt}
-    copiedtobuffer={copiedtobuffer}
-    toprintwindow={toprintwindow}
+      unique={unique}
+      addClipboard={addClipboard}
+      aprops={props} 
+      dosmt2={dosmt2}
+      dosmt={dosmt}
+      copiedtobuffer={copiedtobuffer}
+      toprintwindow={toprintwindow}
     />
   )
 }
@@ -103,10 +105,11 @@ const mapDispatchToProps = (dispatch) =>{
   }
 }
 
-const StoragePlaceEditMenuContainer = connect (mapStateToProps, mapDispatchToProps)(StoragePlaceEditMenuC);
 
-const StoragePlaceEditMenuContainerReduxFrom = reduxForm({
-  form: 'selectingRequestStoragePlace',
-})(StoragePlaceEditMenuContainer);
 
-export default StoragePlaceEditMenuContainerReduxFrom
+export default compose(
+  connect (mapStateToProps, mapDispatchToProps),
+  reduxForm({
+    form: 'selectingRequestStoragePlace',
+  })
+)(StoragePlaceEditMenuC)

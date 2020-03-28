@@ -13,7 +13,7 @@ export const EditOkMenu =({outStikersPath, toprintwindow,outStikers })=>{
  }
  
   return(
-  <Card style={{ width: '18rem' }}>
+  <Card style={{ width: '18rem' , marginLeft: '2vw'}}>
     <Card.Body>
       <Card.Title>Меню наклеек</Card.Title>
       <Card.Text>

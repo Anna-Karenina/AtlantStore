@@ -31,3 +31,8 @@
   color: white;
   border-radius: 3px;
 }
+.card_my_subtitle{
+  color: #6c757D !important;
+  font-weight: 400;
+  font-size: 1.8vw;
+}

@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { deleteAllFilesAC, customCardAc } from '../../Redux/FileReducer'
 import { psdeleteAllFilesAC } from '../../Redux/PostStorageReducer'
 import { ipcRenderer } from 'electron'
+import {IoMdSettings} from 'react-icons/io'
 
 const navstyle={
     backgroundColor: 'rgba(129,129,129, 0.7)',
@@ -33,9 +34,15 @@ const iconstyle={
   height: 'auto',
   color: '#fafafa',
 }
-// const active = {
-//   boxShadow: '2px, 2px, 7px, black'
-// }
+const settings ={
+  marginLeft: 'auto',
+  borderLeft: '1px solid rgb(18,82,107)'
+}
+const lasticonstyle ={
+  width:'25px',
+  height:'auto'
+}
+
 
 const Navbar = ({deleteAllFiles, checkfromtrey}) => {
   let history = useHistory();
@@ -98,6 +105,17 @@ const Navbar = ({deleteAllFiles, checkfromtrey}) => {
                 child = {
                   <FaBoxOpen
                     style={iconstyle}
+                  />
+                  }
+                />
+          </Link>
+        </li>
+        <li style = {settings}>
+          <Link to='/setting' style = {listyle}>
+            <Buttonwcc
+                child = {
+                  <IoMdSettings
+                    style={lasticonstyle}
                   />
                   }
                 />

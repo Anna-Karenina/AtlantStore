@@ -1,18 +1,21 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk'
 import fileReducer from  './FileReducer';
 import PostStorageReducer from  './PostStorageReducer';
 import customerReducer from  './ConsumerReducer';
+import {settingsReducer} from './SettingsReducer'
 import { reducer as formReducer } from 'redux-form'
 
 let reducer = combineReducers({
   fileReducer,
   form: formReducer,
   PostStorageReducer,
-  customerReducer
+  customerReducer,
+  settingsReducer,
 });
 
 
-const store = createStore(reducer);
+const store = createStore(reducer,applyMiddleware(thunk));
 window.store = store
 
 export default store;

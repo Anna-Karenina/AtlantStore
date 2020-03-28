@@ -31,7 +31,7 @@ const {
       }else return undefined
     } )
       setOneRequest(unique(x))
-  },[filesSupplying])
+  },[filesSupplying, unique])
   
   React.useEffect(()=>{
     return sethasNoPlace(filesSupplying.filter(i =>
@@ -43,8 +43,9 @@ const {
     <>
     <Navbar />
     <div style = {{ marginTop: '100px'}}>
+      {console.log(oneRequest)}
       {
-        oneRequest.filter(i=>i!==undefined).length === 0
+        oneRequest.length === 0
          && 
         hasNoPlace.length === 0  ? 
         <EditOkMenu 
@@ -52,16 +53,18 @@ const {
          outStikers={outStikers}
          outStikersPath={outStikersPath}
         />
-      :
+      : 
       <form 
        className={styled.form}
        onSubmit={handleSubmit}>
+         {
+           oneRequest.length === 0 || oneRequest === undefined ? <></> :
         <Card style={{ width: '18rem' }}>
           <Card.Body>
             <Card.Title >
               Добавление запросов
             </Card.Title>
-            <Card.Subtitle className="text-muted">
+            <Card.Subtitle className={styled.card_my_subtitle}>
               В этом меню можно добавить в поле "место на складе"
               поставщика, для которого приехал товар
             </Card.Subtitle>
@@ -153,10 +156,8 @@ const {
              </span>
           </Card.Body>
         </Card>
-      <div>
+         }
 
-
-      </div>
 
      {
        hasNoPlace.length === 0 || hasNoPlace === undefined ? <></> :
@@ -165,7 +166,7 @@ const {
         <Card style={{ width: '18rem' }}>
           <Card.Body>
             <Card.Title>Место на складе</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
+            <Card.Subtitle className={styled.card_my_subtitle}>
               В этом меню можно добавить место на складе для новых запчастей, которые ни разу не прописывались
             </Card.Subtitle>
             <ListGroup variant="flush">

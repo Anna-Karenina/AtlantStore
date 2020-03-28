@@ -1,5 +1,5 @@
 import React,{useState}   from 'react';
-import cl from './Customer.module.css'
+import cl from './Customer.module.scss'
 import RecyclingBin from './components/RecyclingBin'
 import SourceBox from './components/SourceBox'
 import ConsumerField from './components/ConsumerField'
