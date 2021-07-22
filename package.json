@@ -58,7 +58,7 @@
     "react-use": "^11.3.2",
     "redux": "^4.0.5",
     "redux-form": "^8.2.4",
-    "xlsx": "^0.15.5"
+    "xlsx": "^0.17.0"
   },
   "homepage": "./",
   "license": "ISC",
