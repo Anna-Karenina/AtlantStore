@@ -82,7 +82,7 @@
     "@rescripts/cli": "^0.0.10",
     "@rescripts/rescript-env": "^0.0.5",
     "concurrently": "^4.1.0",
-    "electron": "^4.0.6",
+    "electron": "^18.3.7",
     "electron-builder": "^22.2.0",
     "immutability-helper": "^3.0.1",
     "react-icons": "^3.8.0",
